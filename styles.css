@@ -1,21 +1,324 @@
+/* ============================================================
+   FONTS
+   ============================================================ */
 @font-face {
   font-family: 'Satoshi';
   src: url('./fonts/Satoshi-Medium.otf') format('opentype');
   font-weight: 500;
   font-style: normal;
 }
-
+ 
 @font-face {
   font-family: 'Hyperwave';
   src: url('./fonts/Hyperwave.otf') format('opentype');
 }
-
+ 
 @font-face {
   font-family: 'Beluga Road';
   src: url('./fonts/Beluga Road.otf') format('opentype');
 }
-
-/* Only apply Satoshi to paragraphs */
-p {
+ 
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ 
+:root {
+  --blue: #3b7ff5;
+  --dark: #1a1a1a;
+  --light: #f5f5f3;
+  --mid: #9a9a9a;
+}
+ 
+html {
+  font-size: 16px;
+}
+ 
+body {
+  background-color: var(--light);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+ 
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.6rem 2.8rem;
+  z-index: 100;
+}
+ 
+.nav__name {
   font-family: 'Satoshi', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+  color: var(--dark);
+}
+ 
+.nav__links {
+  list-style: none;
+  display: flex;
+  gap: 2.2rem;
+}
+ 
+.nav__links a {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--dark);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+ 
+.nav__links a:hover {
+  opacity: 0.5;
+}
+ 
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  width: 100%;
+  /* gradient fade: light top → dark bottom */
+  background: linear-gradient(to bottom, #e8e8e5 0%, #c8c8c4 40%, #7a7a78 72%, #2a2a2a 100%);
+  overflow: hidden;
+  min-height: 580px;
+  height: 60vw;
+  max-height: 700px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+ 
+/* Large "TIMO" blue letters behind photo */
+.hero__bg-text {
+  position: absolute;
+  bottom: -4%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Hyperwave', sans-serif;
+  font-size: clamp(180px, 30vw, 400px);
+  color: var(--blue);
+  white-space: nowrap;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  user-select: none;
+  pointer-events: none;
+  /* sits behind photo */
+  z-index: 1;
+}
+ 
+/* Script labels */
+.hero__label {
+  position: absolute;
+  font-family: 'Beluga Road', cursive;
+  color: var(--dark);
+  user-select: none;
+  pointer-events: none;
+  z-index: 3;
+  line-height: 1;
+}
+ 
+.hero__label--portfolio {
+  top: clamp(60px, 10vw, 110px);
+  left: clamp(20px, 4vw, 55px);
+  font-size: clamp(28px, 5.5vw, 72px);
+}
+ 
+.hero__label--uxui {
+  bottom: clamp(14%, 16%, 20%);
+  right: clamp(20px, 5vw, 80px);
+  font-size: clamp(22px, 4.5vw, 60px);
+}
+ 
+/* Photo cutout */
+.hero__photo-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+ 
+.hero__photo {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-height: 700px;
+  object-fit: contain;
+  object-position: bottom center;
+  /* white outline to sell the cutout look */
+  filter: drop-shadow(0 0 0 #fff);
+}
+ 
+/* ============================================================
+   SKILLS TICKER
+   ============================================================ */
+.ticker {
+  background-color: var(--dark);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 0;
+  height: 52px;
+}
+ 
+.ticker__label {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  color: var(--mid);
+  padding: 0 1.4rem;
+  flex-shrink: 0;
+  border-right: 1px solid #333;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+ 
+.ticker__track-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+ 
+.ticker__track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  white-space: nowrap;
+  animation: ticker-scroll 20s linear infinite;
+}
+ 
+.ticker__track span {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  padding: 0 2rem;
+  border-right: 1px solid #333;
+  height: 52px;
+  display: flex;
+  align-items: center;
+}
+ 
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+ 
+/* ============================================================
+   BIO / QUOTE SECTION
+   ============================================================ */
+.bio {
+  background-color: #fff;
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(2rem, 6vw, 8rem);
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+}
+ 
+.bio__quote {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(1.15rem, 3vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.3;
+  max-width: 500px;
+  flex: 1.2;
+  color: var(--dark);
+  font-style: normal;
+  quotes: none;
+}
+ 
+.bio__text {
+  font-family: 'Satoshi', sans-serif;
+  font-size: clamp(0.72rem, 1.2vw, 0.82rem);
+  line-height: 1.75;
+  color: #555;
+  max-width: 400px;
+  flex: 1;
+  padding-top: 0.3rem;
+}
+ 
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .nav {
+    padding: 1.2rem 1.4rem;
+  }
+ 
+  .nav__links {
+    gap: 1.2rem;
+  }
+ 
+  .hero {
+    height: 85vw;
+    max-height: 520px;
+    min-height: 380px;
+  }
+ 
+  .hero__label--uxui {
+    bottom: 18%;
+  }
+ 
+  .bio {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+ 
+  .bio__quote,
+  .bio__text {
+    max-width: 100%;
+  }
+}
+ 
+@media (max-width: 480px) {
+  .nav__name {
+    font-size: 0.65rem;
+  }
+ 
+  .nav__links {
+    gap: 0.9rem;
+  }
+ 
+  .nav__links a {
+    font-size: 0.65rem;
+  }
+ 
+  .hero {
+    height: 100vw;
+    max-height: 460px;
+    min-height: 320px;
+  }
+ 
+  .ticker__label {
+    display: none;
+  }
+ 
+  .ticker__track span {
+    padding: 0 1.2rem;
+    font-size: 0.72rem;
+  }
 }
