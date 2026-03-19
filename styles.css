@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Satoshi';
+  src: url('./fonts/Satoshi-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hyperwave';
+  src: url('./fonts/Hyperwave.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Beluga Road';
+  src: url('./fonts/Beluga Road.otf') format('opentype');
+}
+
+/* Only apply Satoshi to paragraphs */
+p {
+  font-family: 'Satoshi', sans-serif;
+}
