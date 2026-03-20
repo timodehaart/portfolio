@@ -8,14 +8,16 @@
   font-style: normal;
 }
  
-@font-face {
-  font-family: 'Hyperwave';
-  src: url('./fonts/Hyperwave.otf') format('opentype');
-}
- 
+/* TIMO background word — big, bold, editorial */
 @font-face {
   font-family: 'Beluga Road';
   src: url('./fonts/Beluga Road.otf') format('opentype');
+}
+ 
+/* PORTFOLIO & UX/UI labels — expressive, display */
+@font-face {
+  font-family: 'Hyperwave';
+  src: url('./fonts/Hyperwave.otf') format('opentype');
 }
  
 /* ============================================================
@@ -28,15 +30,17 @@
 }
  
 :root {
-  --blue: #3b7ff5;
-  --dark: #1a1a1a;
+  --blue:  #3b7ff5;
+  --dark:  #1a1a1a;
   --light: #f5f5f3;
-  --mid: #9a9a9a;
+  --mid:   #9a9a9a;
+ 
+  /* Single source of truth for the TIMO font-size.
+     Everything else is expressed relative to this. */
+  --timo-size: clamp(160px, 26vw, 380px);
 }
  
-html {
-  font-size: 16px;
-}
+html { font-size: 16px; }
  
 body {
   background-color: var(--light);
@@ -49,8 +53,7 @@ body {
    ============================================================ */
 .nav {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   display: flex;
   align-items: center;
@@ -81,70 +84,112 @@ body {
   text-decoration: none;
   transition: opacity 0.2s;
 }
- 
-.nav__links a:hover {
-  opacity: 0.5;
-}
+.nav__links a:hover { opacity: 0.5; }
  
 /* ============================================================
-   HERO
+   HERO  (full viewport height)
    ============================================================ */
 .hero {
   position: relative;
   width: 100%;
-  /* gradient fade: light top → dark bottom */
-  background: linear-gradient(to bottom, #e8e8e5 0%, #c8c8c4 40%, #7a7a78 72%, #2a2a2a 100%);
+  height: 100vh;
+  min-height: 480px;
+  background: linear-gradient(
+    to bottom,
+    #e8e8e5 0%,
+    #c8c8c4 38%,
+    #7a7a78 68%,
+    #2a2a2a 100%
+  );
   overflow: hidden;
-  min-height: 580px;
-  height: 60vw;
-  max-height: 700px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
 }
  
-/* Large "TIMO" blue letters behind photo */
-.hero__bg-text {
+/* ── Ghost / blur layer ────────────────────────────────────── */
+.hero__ghost-wrap {
   position: absolute;
-  bottom: -4%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Hyperwave', sans-serif;
-  font-size: clamp(180px, 30vw, 400px);
-  color: var(--blue);
-  white-space: nowrap;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  user-select: none;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 0;
   pointer-events: none;
-  /* sits behind photo */
-  z-index: 1;
 }
  
-/* Script labels */
+.hero__ghost {
+  display: block;
+  height: 105%;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: blur(28px) brightness(0.65) grayscale(0.4);
+  opacity: 0.55;
+  transform: scale(1.08) translateY(2%);
+  transform-origin: bottom center;
+}
+ 
+/* ── Text group: TIMO + labels anchored to its letters ───── */
+.hero__text-group {
+  position: absolute;
+  /* sit just above the very bottom so the photo bleeds over it */
+  bottom: -2%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  /* fit-content so percentage positioning of children works relative to the TIMO text width */
+  width: fit-content;
+  display: flex;
+  align-items: flex-end;
+  pointer-events: none;
+  user-select: none;
+}
+ 
+/* Large "TIMO" — Beluga Road */
+.hero__bg-text {
+  font-family: 'Beluga Road', cursive;
+  font-size: var(--timo-size);
+  color: var(--blue);
+  white-space: nowrap;
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+}
+ 
+/* ── PORTFOLIO: anchored to the T (left edge of text group) ─ */
 .hero__label {
   position: absolute;
-  font-family: 'Beluga Road', cursive;
+  font-family: 'Hyperwave', sans-serif;
   color: var(--dark);
-  user-select: none;
-  pointer-events: none;
-  z-index: 3;
   line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
 }
  
 .hero__label--portfolio {
-  top: clamp(60px, 10vw, 110px);
-  left: clamp(20px, 4vw, 55px);
-  font-size: clamp(28px, 5.5vw, 72px);
+  /* Align with left edge of the T.
+     Vertically: top-quarter of the TIMO glyph. */
+  left: 0%;
+  /* Push up so it overlaps the cap-height of T */
+  bottom: calc(var(--timo-size) * 0.68);
+  /* Scale relative to --timo-size so it shrinks/grows with TIMO */
+  font-size: calc(var(--timo-size) * 0.175);
+  /* Slight leftward nudge into the T's counter */
+  transform: translateX(-3%);
 }
  
 .hero__label--uxui {
-  bottom: clamp(14%, 16%, 20%);
-  right: clamp(20px, 5vw, 80px);
-  font-size: clamp(22px, 4.5vw, 60px);
+  /* Align with right edge (the O) */
+  right: 0%;
+  /* Sit at the bottom of the O */
+  bottom: calc(var(--timo-size) * 0.04);
+  font-size: calc(var(--timo-size) * 0.145);
+  /* slight rightward nudge */
+  transform: translateX(2%);
 }
  
-/* Photo cutout */
+/* ── Photo cutout — foreground ──────────────────────────────── */
 .hero__photo-wrap {
   position: absolute;
   bottom: 0;
@@ -158,12 +203,12 @@ body {
  
 .hero__photo {
   display: block;
+  /* Fill the full hero height so Timo feels massive */
   height: 100%;
   width: auto;
-  max-height: 700px;
+  max-height: none;
   object-fit: contain;
   object-position: bottom center;
-  /* white outline to sell the cutout look */
   filter: drop-shadow(0 0 0 #fff);
 }
  
@@ -176,7 +221,6 @@ body {
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 0;
   height: 52px;
 }
  
@@ -206,7 +250,6 @@ body {
 .ticker__track {
   display: flex;
   align-items: center;
-  gap: 0;
   white-space: nowrap;
   animation: ticker-scroll 20s linear infinite;
 }
@@ -265,60 +308,34 @@ body {
    RESPONSIVE
    ============================================================ */
 @media (max-width: 768px) {
-  .nav {
-    padding: 1.2rem 1.4rem;
+  :root {
+    --timo-size: clamp(120px, 36vw, 240px);
   }
  
-  .nav__links {
-    gap: 1.2rem;
-  }
- 
-  .hero {
-    height: 85vw;
-    max-height: 520px;
-    min-height: 380px;
-  }
- 
-  .hero__label--uxui {
-    bottom: 18%;
-  }
+  .nav { padding: 1.2rem 1.4rem; }
+  .nav__links { gap: 1.2rem; }
  
   .bio {
     flex-direction: column;
     gap: 1.5rem;
   }
- 
   .bio__quote,
-  .bio__text {
-    max-width: 100%;
-  }
+  .bio__text { max-width: 100%; }
 }
  
 @media (max-width: 480px) {
-  .nav__name {
-    font-size: 0.65rem;
+  :root {
+    --timo-size: clamp(96px, 40vw, 180px);
   }
  
-  .nav__links {
-    gap: 0.9rem;
-  }
+  .nav__name { font-size: 0.65rem; }
+  .nav__links { gap: 0.9rem; }
+  .nav__links a { font-size: 0.65rem; }
  
-  .nav__links a {
-    font-size: 0.65rem;
-  }
- 
-  .hero {
-    height: 100vw;
-    max-height: 460px;
-    min-height: 320px;
-  }
- 
-  .ticker__label {
-    display: none;
-  }
- 
+  .ticker__label { display: none; }
   .ticker__track span {
     padding: 0 1.2rem;
     font-size: 0.72rem;
   }
 }
+ 
