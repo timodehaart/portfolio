@@ -231,10 +231,6 @@ img {
   will-change: transform;
 }
 
-.slider-track:hover {
-  animation-play-state: paused;
-}
-
 /* ── Card — fixed size, never fluid ── */
 .slide-item {
   flex-shrink: 0;
@@ -283,16 +279,14 @@ img {
 
 .slider-statement {
   position: absolute;
-  top: calc(var(--card-h) - 100px);
+  top: calc(var(--card-h) + 290px);
   left: 32px;
   right: 32px;
   height: 100px;
 
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
   padding: 0 5vw;
 
   z-index: 10;
@@ -302,7 +296,7 @@ img {
 /* Large editorial statement */
 .statement-text {
   font-family: 'InterDisplay-Medium', sans-serif;
-  font-size: clamp(2rem, 4.5vw, 4.2rem);
+  font-size: clamp(1.5rem, 4.5vw, 4.2rem);
   font-weight: 400;
   color: #1e1e1e;
   text-align: center;
@@ -310,43 +304,6 @@ img {
   max-width: 820px;
   letter-spacing: -0.01em;
 }
-
-.statement-text em {
-  font-style: italic;
-  opacity: 0.55;
-}
-
-/* Discipline / tag strip — mirrors the client logo row in reference */
-.statement-clients {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.statement-clients span {
-  font-family: 'ChivoMono', sans-serif;
-  font-size: clamp(0.75rem, 1.1vw, 0.95rem);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #1e1e1e;
-  opacity: 0.45;
-
-  /* Subtle dot separator via padding + pseudo */
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-}
-
-/* Dot between each tag (not after the last) */
-.statement-clients span:not(:last-child)::after {
-  content: '·';
-  opacity: 0.4;
-  font-size: 1.4em;
-  margin-left: 0; /* gap handles spacing */
-}
-
 
 /* ── Mobile: 2 cards — only here do card dimensions change ── */
 @media (max-width: 768px) {
