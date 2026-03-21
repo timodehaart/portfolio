@@ -4,12 +4,62 @@
     padding: 0;
     margin: 0;
 }
-
+ 
 body {
   font-family: 'InterDisplay', sans-serif;
 }
-
+ 
 /* Container*/
 .container {
     padding: 32px;
+}
+ 
+/* ── Frosted glass edge blur (stays while scrolling) ── */
+/* z-index below nav-overlay (1999) so menu is never blurred */
+.vignette-left,
+.vignette-right,
+.vignette-bottom {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1500;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.1);
+}
+ 
+/* Sides: only bottom half of the page, fade up and inward */
+.vignette-left {
+  bottom: 0;
+  left: 0;
+  height: 50vh;
+  width: 100px;
+  mask-image: linear-gradient(to right, black 20%, transparent 100%),
+              linear-gradient(to top, black 20%, transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-image: linear-gradient(to right, black 20%, transparent 100%),
+                      linear-gradient(to top, black 20%, transparent 100%);
+  -webkit-mask-composite: source-in;
+}
+ 
+.vignette-right {
+  bottom: 0;
+  right: 0;
+  height: 50vh;
+  width: 100px;
+  mask-image: linear-gradient(to left, black 20%, transparent 100%),
+              linear-gradient(to top, black 20%, transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-image: linear-gradient(to left, black 20%, transparent 100%),
+                      linear-gradient(to top, black 20%, transparent 100%);
+  -webkit-mask-composite: source-in;
+}
+ 
+/* Bottom: strong at the very bottom, fades upward */
+.vignette-bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  mask-image: linear-gradient(to top, black 0%, black 20%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 0%, black 20%, transparent 100%);
 }
