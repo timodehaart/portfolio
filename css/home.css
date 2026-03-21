@@ -6,14 +6,19 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'ChivoMono';
+    src: url('../fonts/chivoMono/ChivoMono[wght].ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 header {
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
-  padding-right: 16px;
-  padding-left: 16px;
+  height: 60px;
   background-color: #fff;
   position: sticky;
   top: 0;
@@ -149,34 +154,34 @@ img {
 
 /* ── Hero Section ── */
 .hero {
-  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
   min-height: 52vh;
   padding: 3rem 1.5rem;
+  gap: 1.5rem;
 }
 
-/* Left — vertical text, absolute bottom-left */
+/* Left — vertical text, bottom-left */
 .hero-left {
-  position: absolute;
-  bottom: 2.8rem;
-  left: 1.5rem;
+  flex-shrink: 0;
+  width: 160px;           /* fixed width */
+  align-self: flex-end;
 }
 
 .hero-vertical {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font-size: 1rem;
-  letter-spacing: 0.06em;
+  font-size: 1.2rem;
   color: #1e1e1e;
-  opacity: 0.45;
   white-space: nowrap;
-  font-family: 'InterDisplay-Medium', sans-serif;
+  font-family: 'ChivoMono', sans-serif;
 }
 
 /* Center — logo + tagline */
 .hero-center {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -198,21 +203,52 @@ img {
   text-align: center;
 }
 
-/* Right — social links, absolute bottom-right */
+/* Right — availability info, bottom-right */
 .hero-right {
-  position: absolute;
-  bottom: 2.8rem;
-  right: 1.5rem;
+  flex-shrink: 0;
+  width: 160px;           /* same fixed width */
+  align-self: flex-end;
 }
 
 .hero-links {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  font-size: 0.7rem;
+  font-size: 1.2rem;
   letter-spacing: 0.06em;
-  color: #1e1e1e;
-  opacity: 0.45;
-  font-family: 'InterDisplay-Medium', sans-serif;
-  white-space: nowrap;
+  color: #1E1E1E;
+  font-family: 'ChivoMono', sans-serif;
+  white-space: normal;    /* was nowrap — let it wrap inside the 160px box */
+  text-align: right;
+}
+
+/* ── Responsive: wrap left/right below the image ── */
+@media (max-width: 1200px) {
+  .hero {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    row-gap: 6rem;
+  }
+
+  .hero-center {
+    order: 0;
+    flex-basis: 100%;
+  }
+
+  .hero-left {
+    order: 1;
+    flex: 1;
+    align-self: auto;
+    display: flex;
+    justify-content: flex-start;  /* push to the far left */
+  }
+
+  .hero-right {
+    order: 2;
+    flex: 1;
+    align-self: flex-end;         /* sticks to the bottom of the row */
+    display: flex;
+    justify-content: flex-end;
+  }
 }

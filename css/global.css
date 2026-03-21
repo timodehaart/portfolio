@@ -1,11 +1,3 @@
-/* Fonts */
-@font-face {
-    font-family: 'InterDisplay';
-    src: url('fonts/InterDisplay-Medium.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 /* Global Styling */
 * {
     box-sizing: border-box;
@@ -19,5 +11,5 @@ body {
 
 /* Container*/
 .container {
-    padding: 24px;
+    padding: 32px;
 }
