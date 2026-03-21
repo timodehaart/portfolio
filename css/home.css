@@ -192,41 +192,34 @@ img {
 
 /* ══════════════════════════════════════════════════
    Infinite Slider
-   ══════════════════════════════════════════════════
 
-   Height:
-   - JS measures the remaining screen height below the slider top
-     and writes it as --remaining-vh (in px).
-   - .slider-viewport is 2× that value, so:
-       • the top half sits on-screen (the "landing view")
-       • the bottom half lives below the fold — scroll to see it
-   - Because height: 100% on html/body is NOT set, the body grows
-     taller than 100vh naturally and the page becomes scrollable.
+   Card dimensions are fixed — they do not scale with
+   the viewport. Smaller screens just clip the sides
+   (overflow-x: clip). Only the media query changes size.
 
-   Horizontal overflow:
-   - overflow-x: clip  clips the track without creating a scroll
-     container, leaving vertical scrolling completely free.
-
-   Cards:
-   - border-radius: 80px on ALL corners — fixed px, never scales.
-   - ::after = vertical white line at left: 50% (the midline cut).
+   --card-w : fixed card width
+   --card-h : visible card height (viewport shows this half)
+   Viewport height = --card-h * 2 so the bottom half is
+   below the fold and revealed by scrolling.
    ══════════════════════════════════════════════════ */
 
-.slider-viewport {
-  /* 2× remaining screen height below this element */
-  height: calc(var(--remaining-vh, 300px) * 2);
+:root {
+  --card-w: 500px;
+  --card-h: 320px;
+  /* Loop = 4 cards × (width + gap) − last gap */
+  --loop-w: calc(4 * (var(--card-w) + 8px) - 8px);
+}
 
-  /*
-    overflow-x: clip  — trims horizontal bleed from the moving track
-    WITHOUT creating a new block formatting context / scroll container.
-    This is the key that keeps vertical page scroll unblocked.
-  */
+.slider-viewport {
+  height: calc(var(--card-h) * 2);
+
   overflow-x: clip;
   overflow-y: visible;
 
   width: 100%;
   padding: 0 32px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .slider-track {
@@ -242,23 +235,18 @@ img {
   animation-play-state: paused;
 }
 
-/* ── Card ── */
+/* ── Card — fixed size, never fluid ── */
 .slide-item {
   flex-shrink: 0;
-
-  /* 4 cards, 3 gaps × 8px, 2 × 32px side padding */
-  width: calc((100vw - 88px) / 4);
+  width: var(--card-w);
   height: 100%;
-
-  /* Fixed 80px radius on every corner — does not scale with viewport */
   border-radius: 80px;
-
   overflow: hidden;
   background: #e8e8e8;
   position: relative;
 }
 
-/* Image fills the full card height (both visible and below-fold half) */
+/* Image fills the full card height */
 .slide-item img {
   width: 100% !important;
   height: 100% !important;
@@ -269,7 +257,7 @@ img {
   user-select: none;
 }
 
-/* Vertical white midline — runs top-to-bottom at the horizontal centre */
+/* Vertical white midline */
 .slide-item::after {
   content: '';
   position: absolute;
@@ -283,24 +271,98 @@ img {
   z-index: 2;
 }
 
-/*
-  Loop distance = 4 items × (item-width + 8px gap)
-  = 4 × ((100vw - 88px)/4 + 8px)
-  = (100vw - 88px) + 32px
-  = 100vw - 56px
-*/
 @keyframes slider-scroll {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(calc(-100vw + 56px)); }
+  100% { transform: translateX(calc(-1 * var(--loop-w))); }
 }
 
-/* ── Mobile: 2 cards ── */
-@media (max-width: 768px) {
-  .slider-viewport { padding: 0 16px; }
-  .slide-item { width: calc((100vw - 40px) / 2); }
 
-  @keyframes slider-scroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(calc(-100vw + 32px)); }
+/* ══════════════════════════════════════════════════
+   Statement overlay — bottom 100px of visible cards
+   ══════════════════════════════════════════════════ */
+
+.slider-statement {
+  position: absolute;
+  top: calc(var(--card-h) - 100px);
+  left: 32px;
+  right: 32px;
+  height: 100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 5vw;
+
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Large editorial statement */
+.statement-text {
+  font-family: 'InterDisplay-Medium', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 4.2rem);
+  font-weight: 400;
+  color: #1e1e1e;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 820px;
+  letter-spacing: -0.01em;
+}
+
+.statement-text em {
+  font-style: italic;
+  opacity: 0.55;
+}
+
+/* Discipline / tag strip — mirrors the client logo row in reference */
+.statement-clients {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.statement-clients span {
+  font-family: 'ChivoMono', sans-serif;
+  font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1e1e1e;
+  opacity: 0.45;
+
+  /* Subtle dot separator via padding + pseudo */
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+/* Dot between each tag (not after the last) */
+.statement-clients span:not(:last-child)::after {
+  content: '·';
+  opacity: 0.4;
+  font-size: 1.4em;
+  margin-left: 0; /* gap handles spacing */
+}
+
+
+/* ── Mobile: 2 cards — only here do card dimensions change ── */
+@media (max-width: 768px) {
+  :root {
+    --card-w: calc((100vw - 40px) / 2); /* 2 cards, 1 gap × 8px, 2 × 16px padding */
+    --card-h: 300px;
+    --loop-w: calc(4 * (var(--card-w) + 8px) - 8px);
   }
+
+  .slider-viewport { padding: 0 16px; }
+
+  .slider-statement {
+    left: 16px;
+    right: 16px;
+  }
+
+  .statement-clients { gap: 1rem; }
+  .statement-clients span { gap: 1rem; }
 }
