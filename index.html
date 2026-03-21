@@ -31,7 +31,21 @@
         </div>
     </section>
 
-    <!-- Images section would go here -->
+    <!-- Infinite Slider: viewport clips to top half, full image fills each card -->
+    <div class="slider-viewport" id="sliderViewport">
+        <div class="slider-track" id="sliderTrack">
+            <!-- Original set -->
+            <div class="slide-item"><img src="img/projects/psyduck.jpg" alt="Pokemon Psyduck" draggable="false"></div>
+            <div class="slide-item"><img src="img/projects/croc-poster.png" alt="Croc Poster" draggable="false"></div>
+            <div class="slide-item"><img src="img/projects/heart-poster.png" alt="Heart Poster" draggable="false"></div>
+            <div class="slide-item"><img src="img/projects/skating-poster.png" alt="Skating Poster" draggable="false"></div>
+            <!-- Clone set — identical, enables seamless jump -->
+            <div class="slide-item"><img src="img/projects/psyduck.jpg" alt="Pokemon Psyduck" draggable="false"></div>
+            <div class="slide-item"><img src="img/projects/croc-poster.png" alt="Croc Poster" draggable="false"></div>
+            <div class="slide-item"><img src="img/projects/heart-poster.png" alt="Heart Poster" draggable="false"></div>
+            <div class="slide-item"><img src="img/projects/skating-poster.png" alt="Skating Poster" draggable="false"></div>
+        </div>
+    </div>
 
     <nav class="nav-overlay" id="navOverlay">
         <ul class="nav-list">
@@ -43,5 +57,6 @@
     </nav>
 
     <script src="js/menu.js"></script>
+    <script src="js/slider.js"></script>
 </body>
 </html>

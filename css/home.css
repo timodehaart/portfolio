@@ -13,6 +13,17 @@
     font-style: normal;
 }
 
+/*
+  SCROLL FIX: Do NOT set height: 100% on html/body — that caps the
+  document height to the viewport and prevents any overflow from
+  being scrollable. Only min-height: 100vh on body is needed.
+*/
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 header {
   box-sizing: border-box;
   display: flex;
@@ -25,13 +36,11 @@ header {
   z-index: 2000;
 }
 
-/* Logo */
 img {
   height: 2.2rem;
   width: auto;
 }
 
-/* Menu */
 .hamburger {
   position: relative;
   width: 2.5rem;
@@ -39,7 +48,6 @@ img {
   cursor: pointer;
 }
 
-/* Two bars via pseudo-elements — no spans needed */
 .hamburger::before,
 .hamburger::after {
   content: '';
@@ -52,56 +60,32 @@ img {
   transition: top 0.4s ease, transform 0.4s ease;
 }
 
-.hamburger::before {
-  top: 50%;
-  transform: translateY(-50%);
-}
-.hamburger::after {
-  top: 50%;
-  transform: translateY(-50%) rotate(90deg);
-}
+.hamburger::before { top: 50%; transform: translateY(-50%); }
+.hamburger::after  { top: 50%; transform: translateY(-50%) rotate(90deg); }
 
-/* Hover (closed): spread apart */
-.hamburger:not(.is-open):hover::before {
-  top: 65%;
-  transform: translateY(-50%);
-}
-.hamburger:not(.is-open):hover::after {
-  top: 35%;
-  transform: translateY(-50%) rotate(0deg);
-}
+.hamburger:not(.is-open):hover::before { top: 65%; transform: translateY(-50%); }
+.hamburger:not(.is-open):hover::after  { top: 35%; transform: translateY(-50%) rotate(0deg); }
 
-/* Open: animate into X */
-.hamburger.is-open::before {
-  top: 50%;
-  transform: translateY(-50%) rotate(45deg);
-}
-.hamburger.is-open::after {
-  top: 50%;
-  transform: translateY(-50%) rotate(-45deg);
-}
+.hamburger.is-open::before { top: 50%; transform: translateY(-50%) rotate(45deg); }
+.hamburger.is-open::after  { top: 50%; transform: translateY(-50%) rotate(-45deg); }
 
 /* ── Overlay nav ── */
 .nav-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255,255,255,0.82);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   z-index: 1999;
   display: flex;
   align-items: center;
   padding-top: 80px;
-
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
 }
 
-.nav-overlay.is-open {
-  opacity: 1;
-  pointer-events: all;
-}
+.nav-overlay.is-open { opacity: 1; pointer-events: all; }
 
 .nav-list {
   list-style: none;
@@ -123,25 +107,17 @@ img {
   font-weight: 400;
   line-height: 1.15;
   border-bottom: 3px solid transparent;
-
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.2s ease;
 }
 
-.nav-overlay.is-open .nav-list a {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+.nav-overlay.is-open .nav-list a { opacity: 1; transform: translateY(0); }
 .nav-overlay.is-open .nav-list li:nth-child(1) a { transition-delay: 0.05s; }
 .nav-overlay.is-open .nav-list li:nth-child(2) a { transition-delay: 0.12s; }
 .nav-overlay.is-open .nav-list li:nth-child(3) a { transition-delay: 0.19s; }
 .nav-overlay.is-open .nav-list li:nth-child(4) a { transition-delay: 0.26s; }
-
-.nav-list a:hover {
-  border-bottom-color: #1e1e1e;
-}
+.nav-list a:hover { border-bottom-color: #1e1e1e; }
 
 .nav-index {
   font-size: clamp(0.75rem, 1.5vw, 1rem);
@@ -152,7 +128,7 @@ img {
   white-space: nowrap;
 }
 
-/* ── Hero Section ── */
+/* ── Hero ── */
 .hero {
   display: flex;
   flex-direction: row;
@@ -161,14 +137,11 @@ img {
   min-height: 52vh;
   padding: 3rem 1.5rem;
   gap: 1.5rem;
+  flex-shrink: 0;
 }
 
-/* Left — vertical text, bottom-left */
-.hero-left {
-  flex-shrink: 0;
-  width: 160px;           /* fixed width */
-  align-self: flex-end;
-}
+.hero-left  { flex-shrink: 0; width: 160px; align-self: flex-end; }
+.hero-right { flex-shrink: 0; width: 160px; align-self: flex-end; }
 
 .hero-vertical {
   writing-mode: vertical-rl;
@@ -179,7 +152,6 @@ img {
   font-family: 'ChivoMono', sans-serif;
 }
 
-/* Center — logo + tagline */
 .hero-center {
   flex: 1;
   display: flex;
@@ -189,11 +161,7 @@ img {
   gap: 2.2rem;
 }
 
-.hero-logo {
-  width: 680px;
-  max-width: 100%;
-  height: auto;
-}
+.hero-logo { width: 680px; max-width: 100%; height: auto; }
 
 .hero-sub {
   font-size: clamp(1.5rem, 1.5vw, 1.05rem);
@@ -201,13 +169,6 @@ img {
   color: #1e1e1e;
   letter-spacing: 0.01em;
   text-align: center;
-}
-
-/* Right — availability info, bottom-right */
-.hero-right {
-  flex-shrink: 0;
-  width: 160px;           /* same fixed width */
-  align-self: flex-end;
 }
 
 .hero-links {
@@ -218,37 +179,128 @@ img {
   letter-spacing: 0.06em;
   color: #1E1E1E;
   font-family: 'ChivoMono', sans-serif;
-  white-space: normal;    /* was nowrap — let it wrap inside the 160px box */
   text-align: right;
 }
 
-/* ── Responsive: wrap left/right below the image ── */
 @media (max-width: 1200px) {
-  .hero {
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    row-gap: 6rem;
-  }
+  .hero { flex-wrap: wrap; justify-content: center; align-items: flex-start; row-gap: 6rem; }
+  .hero-center { order: 0; flex-basis: 100%; }
+  .hero-left   { order: 1; flex: 1; align-self: auto; display: flex; justify-content: flex-start; }
+  .hero-right  { order: 2; flex: 1; align-self: flex-end; display: flex; justify-content: flex-end; }
+}
 
-  .hero-center {
-    order: 0;
-    flex-basis: 100%;
-  }
 
-  .hero-left {
-    order: 1;
-    flex: 1;
-    align-self: auto;
-    display: flex;
-    justify-content: flex-start;  /* push to the far left */
-  }
+/* ══════════════════════════════════════════════════
+   Infinite Slider
+   ══════════════════════════════════════════════════
 
-  .hero-right {
-    order: 2;
-    flex: 1;
-    align-self: flex-end;         /* sticks to the bottom of the row */
-    display: flex;
-    justify-content: flex-end;
+   Height:
+   - JS measures the remaining screen height below the slider top
+     and writes it as --remaining-vh (in px).
+   - .slider-viewport is 2× that value, so:
+       • the top half sits on-screen (the "landing view")
+       • the bottom half lives below the fold — scroll to see it
+   - Because height: 100% on html/body is NOT set, the body grows
+     taller than 100vh naturally and the page becomes scrollable.
+
+   Horizontal overflow:
+   - overflow-x: clip  clips the track without creating a scroll
+     container, leaving vertical scrolling completely free.
+
+   Cards:
+   - border-radius: 80px on ALL corners — fixed px, never scales.
+   - ::after = vertical white line at left: 50% (the midline cut).
+   ══════════════════════════════════════════════════ */
+
+.slider-viewport {
+  /* 2× remaining screen height below this element */
+  height: calc(var(--remaining-vh, 300px) * 2);
+
+  /*
+    overflow-x: clip  — trims horizontal bleed from the moving track
+    WITHOUT creating a new block formatting context / scroll container.
+    This is the key that keeps vertical page scroll unblocked.
+  */
+  overflow-x: clip;
+  overflow-y: visible;
+
+  width: 100%;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+.slider-track {
+  display: flex;
+  gap: 8px;
+  height: 100%;
+  width: max-content;
+  animation: slider-scroll 28s linear infinite;
+  will-change: transform;
+}
+
+.slider-track:hover {
+  animation-play-state: paused;
+}
+
+/* ── Card ── */
+.slide-item {
+  flex-shrink: 0;
+
+  /* 4 cards, 3 gaps × 8px, 2 × 32px side padding */
+  width: calc((100vw - 88px) / 4);
+  height: 100%;
+
+  /* Fixed 80px radius on every corner — does not scale with viewport */
+  border-radius: 80px;
+
+  overflow: hidden;
+  background: #e8e8e8;
+  position: relative;
+}
+
+/* Image fills the full card height (both visible and below-fold half) */
+.slide-item img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Vertical white midline — runs top-to-bottom at the horizontal centre */
+.slide-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  background: #ffffff;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/*
+  Loop distance = 4 items × (item-width + 8px gap)
+  = 4 × ((100vw - 88px)/4 + 8px)
+  = (100vw - 88px) + 32px
+  = 100vw - 56px
+*/
+@keyframes slider-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-100vw + 56px)); }
+}
+
+/* ── Mobile: 2 cards ── */
+@media (max-width: 768px) {
+  .slider-viewport { padding: 0 16px; }
+  .slide-item { width: calc((100vw - 40px) / 2); }
+
+  @keyframes slider-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(calc(-100vw + 32px)); }
   }
 }
