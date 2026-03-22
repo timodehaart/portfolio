@@ -31,8 +31,7 @@ header {
   align-items: center;
   height: 60px;
   background-color: #fff;
-  position: sticky;
-  top: 0;
+  position: relative;   /* ← not sticky, not fixed */
   z-index: 2000;
 }
 
@@ -93,12 +92,34 @@ img {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.nav-list li {
+  position: relative;
+}
+
+.nav-list li::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: calc(-2.5rem + 32px);
+  right: calc(-2.5rem + 32px);
+  height: 2px;
+  background: #1e1e1e;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-list li:hover::after {
+  transform: scaleX(1);
 }
 
 .nav-list a {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   gap: 1rem;
   text-decoration: none;
   color: #1e1e1e;
@@ -106,10 +127,9 @@ img {
   font-family: 'InterDisplay-Medium', sans-serif;
   font-weight: 400;
   line-height: 1.15;
-  border-bottom: 3px solid transparent;
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.2s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .nav-overlay.is-open .nav-list a { opacity: 1; transform: translateY(0); }
@@ -117,12 +137,11 @@ img {
 .nav-overlay.is-open .nav-list li:nth-child(2) a { transition-delay: 0.12s; }
 .nav-overlay.is-open .nav-list li:nth-child(3) a { transition-delay: 0.19s; }
 .nav-overlay.is-open .nav-list li:nth-child(4) a { transition-delay: 0.26s; }
-.nav-list a:hover { border-bottom-color: #1e1e1e; }
 
 .nav-index {
   font-size: clamp(0.75rem, 1.5vw, 1rem);
   color: #1e1e1e;
-  opacity: 0.45;
+  font-family: 'ChivoMono', sans-serif;
   font-weight: 400;
   letter-spacing: 0.02em;
   white-space: nowrap;
@@ -192,30 +211,18 @@ img {
 
 /* ══════════════════════════════════════════════════
    Infinite Slider
-
-   Card dimensions are fixed — they do not scale with
-   the viewport. Smaller screens just clip the sides
-   (overflow-x: clip). Only the media query changes size.
-
-   --card-w : fixed card width
-   --card-h : visible card height (viewport shows this half)
-   Viewport height = --card-h * 2 so the bottom half is
-   below the fold and revealed by scrolling.
    ══════════════════════════════════════════════════ */
 
 :root {
   --card-w: 500px;
   --card-h: 320px;
-  /* Loop = 4 cards × (width + gap) − last gap */
   --loop-w: calc(4 * (var(--card-w) + 8px) - 8px);
 }
 
 .slider-viewport {
   height: calc(var(--card-h) * 2);
-
   overflow-x: clip;
   overflow-y: visible;
-
   width: 100%;
   padding: 0 32px;
   box-sizing: border-box;
@@ -231,7 +238,6 @@ img {
   will-change: transform;
 }
 
-/* ── Card — fixed size, never fluid ── */
 .slide-item {
   flex-shrink: 0;
   width: var(--card-w);
@@ -242,7 +248,6 @@ img {
   position: relative;
 }
 
-/* Image fills the full card height */
 .slide-item img {
   width: 100% !important;
   height: 100% !important;
@@ -253,7 +258,6 @@ img {
   user-select: none;
 }
 
-/* Vertical white midline */
 .slide-item::after {
   content: '';
   position: absolute;
@@ -274,26 +278,23 @@ img {
 
 
 /* ══════════════════════════════════════════════════
-   Statement overlay — bottom 100px of visible cards
+   Statement overlay
    ══════════════════════════════════════════════════ */
 
 .slider-statement {
   position: absolute;
-  top: calc(var(--card-h) + 290px);
+  top: calc(var(--card-h) + 275px);
   left: 32px;
   right: 32px;
   height: 100px;
-
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 5vw;
-
   z-index: 10;
   pointer-events: none;
 }
 
-/* Large editorial statement */
 .statement-text {
   font-family: 'InterDisplay-Medium', sans-serif;
   font-size: clamp(1.5rem, 4.5vw, 4.2rem);
@@ -305,14 +306,8 @@ img {
   letter-spacing: -0.01em;
 }
 
-/* ── Mobile: 2 cards — only here do card dimensions change ── */
+/* ── Mobile ── */
 @media (max-width: 768px) {
-  :root {
-    --card-w: calc((100vw - 40px) / 2); /* 2 cards, 1 gap × 8px, 2 × 16px padding */
-    --card-h: 300px;
-    --loop-w: calc(4 * (var(--card-w) + 8px) - 8px);
-  }
-
   .slider-viewport { padding: 0 16px; }
 
   .slider-statement {
