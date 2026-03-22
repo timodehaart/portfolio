@@ -9,11 +9,6 @@ body {
   font-family: 'InterDisplay', sans-serif;
 }
  
-/* Container*/
-.container {
-    padding: 32px;
-}
- 
 /* ── Frosted glass edge blur (stays while scrolling) ── */
 /* z-index below nav-overlay (1999) so menu is never blurred */
 .vignette-left,
