@@ -15,16 +15,12 @@
     <div class="vignette-bottom" aria-hidden="true"></div>
  
     <header>
-        <!-- add data-enter="0" to the img and hamburger -->
         <img src="img/logo/letter.svg" alt="Logo" data-enter="0">
         <div class="hamburger" id="menuToggle" data-enter="100"></div>
     </header>
-
-    </div>
  
     <!-- Hero Section -->
     <section class="hero">
-        <!-- Hero elements -->
         <div class="hero-left">
             <span class="hero-vertical" data-enter="800">( Timo de Haart )</span>
         </div>
@@ -39,22 +35,19 @@
         </div>
     </section>
  
-    <!-- Infinite Slider: viewport clips to top half, full image fills each card -->
+    <!-- Infinite Slider -->
     <div class="slider-viewport" id="sliderViewport" data-reveal>
         <div class="slider-track" id="sliderTrack" data-enter="1200">
-            <!-- Original set -->
             <div class="slide-item"><img src="img/projects/psyduck.jpg" alt="Pokemon Psyduck" draggable="false"></div>
             <div class="slide-item"><img src="img/projects/croc-poster.jpg" alt="Croc Poster" draggable="false"></div>
             <div class="slide-item"><img src="img/projects/heart-poster.jpg" alt="Heart Poster" draggable="false"></div>
             <div class="slide-item"><img src="img/projects/skating-poster.jpg" alt="Skating Poster" draggable="false"></div>
-            <!-- Clone set — identical, enables seamless jump -->
             <div class="slide-item"><img src="img/projects/psyduck.jpg" alt="Pokemon Psyduck" draggable="false"></div>
             <div class="slide-item"><img src="img/projects/croc-poster.jpg" alt="Croc Poster" draggable="false"></div>
             <div class="slide-item"><img src="img/projects/heart-poster.jpg" alt="Heart Poster" draggable="false"></div>
             <div class="slide-item"><img src="img/projects/skating-poster.jpg" alt="Skating Poster" draggable="false"></div>
         </div>
  
-        <!-- Statement overlay — sits at the top of the cards -->
         <div class="slider-statement">
             <p class="statement-text">
                 UX/UI design and development — seeking a graduation internship, have a look at my projects.
@@ -62,90 +55,77 @@
         </div>
     </div>
 
-    <!-- ══════════════════════════════════════════════════
-     Latest Projects Section
-     Add this block right after the closing </div> of .slider-viewport
-     Link the CSS: <link rel="stylesheet" href="css/projects-section.css">
-     ══════════════════════════════════════════════════ -->
- 
+    <!-- Latest Projects Section -->
     <section class="projects-section" data-reveal>
     
-    <div class="projects-header">
-        <h2 class="projects-title">Latest<br>Projects.</h2>
-        <span class="projects-year">( _©2026 )</span>
-    </div>
-    
-    <div class="projects-grid">
-    
-    <!-- Card 01 -->
-    <article class="project-card">
-        <img
-        class="project-card__img"
-        src="img/projects/psyduck.jpg"
-        alt="Project Psyduck"
-        draggable="false"
-        >
-        <div class="project-card__title">
-        <span class="project-card__tag">Branding / Illustration</span>
-        <h3 class="project-card__name">Psyduck</h3>
+        <div class="projects-header">
+            <h2 class="projects-title">Projects<br>Showcase.</h2>
+            <span class="projects-year">( _©2026 )</span>
         </div>
-        <div class="project-card__meta">
-        <span class="project-card__index">( _01 )</span>
+        
+        <div class="projects-grid">
+        
+            <!-- Card 01 -->
+            <div class="project-item">
+                <article class="project-card">
+                    <img class="project-card__img" src="img/projects/psyduck.jpg" alt="Project Psyduck" draggable="false">
+                    <div class="project-card__title">
+                        <span class="project-card__tag">Branding / Illustration</span>
+                        <h3 class="project-card__name-hover">Psyduck</h3>
+                    </div>
+                </article>
+                <div class="project-card__label">
+                    <span class="project-card__name">Psyduck</span>
+                    <span class="project-card__software">_Blender</span>
+                </div>
+            </div>
+        
+            <!-- Card 02 -->
+            <div class="project-item">
+                <article class="project-card">
+                    <img class="project-card__img" src="img/projects/croc-poster.jpg" alt="Croc Poster" draggable="false">
+                    <div class="project-card__title">
+                        <span class="project-card__tag">Poster Design</span>
+                        <h3 class="project-card__name-hover">Croc Poster</h3>
+                    </div>
+                </article>
+                <div class="project-card__label">
+                    <span class="project-card__name">Croc Poster</span>
+                    <span class="project-card__software">_Photoshop</span>
+                </div>
+            </div>
+        
+            <!-- Card 03 -->
+            <div class="project-item">
+                <article class="project-card">
+                    <img class="project-card__img" src="img/projects/heart-poster.jpg" alt="Heart Poster" draggable="false">
+                    <div class="project-card__title">
+                        <span class="project-card__tag">Editorial / Print</span>
+                        <h3 class="project-card__name-hover">Heart Poster</h3>
+                    </div>
+                </article>
+                <div class="project-card__label">
+                    <span class="project-card__name">Heart Poster</span>
+                    <span class="project-card__software">_Photoshop</span>
+                </div>
+            </div>
+        
+            <!-- Card 04 -->
+            <div class="project-item">
+                <article class="project-card">
+                    <img class="project-card__img" src="img/projects/skating-poster.jpg" alt="Skating Poster" draggable="false">
+                    <div class="project-card__title">
+                        <span class="project-card__tag">Photography / Layout</span>
+                        <h3 class="project-card__name-hover">Skating Poster</h3>
+                    </div>
+                </article>
+                <div class="project-card__label">
+                    <span class="project-card__name">Skating Poster</span>
+                    <span class="project-card__software">_Photoshop</span>
+                </div>
+            </div>
+        
         </div>
-    </article>
-    
-    <!-- Card 02 -->
-    <article class="project-card">
-        <img
-        class="project-card__img"
-        src="img/projects/croc-poster.jpg"
-        alt="Croc Poster"
-        draggable="false"
-        >
-        <div class="project-card__title">
-        <span class="project-card__tag">Poster Design</span>
-        <h3 class="project-card__name">Croc Poster</h3>
-        </div>
-        <div class="project-card__meta">
-        <span class="project-card__index">( _02 )</span>
-        </div>
-    </article>
-    
-    <!-- Card 03 -->
-    <article class="project-card">
-        <img
-        class="project-card__img"
-        src="img/projects/heart-poster.jpg"
-        alt="Heart Poster"
-        draggable="false"
-        >
-        <div class="project-card__title">
-        <span class="project-card__tag">Editorial / Print</span>
-        <h3 class="project-card__name">Heart Poster</h3>
-        </div>
-        <div class="project-card__meta">
-        <span class="project-card__index">( _03 )</span>
-        </div>
-    </article>
-    
-    <!-- Card 04 -->
-    <article class="project-card">
-        <img
-        class="project-card__img"
-        src="img/projects/skating-poster.jpg"
-        alt="Skating Poster"
-        draggable="false"
-        >
-        <div class="project-card__title">
-        <span class="project-card__tag">Photography / Layout</span>
-        <h3 class="project-card__name">Skating Poster</h3>
-        </div>
-        <div class="project-card__meta">
-        <span class="project-card__index">( _04 )</span>
-        </div>
-    </article>
-    
-    </div>
     
     </section>
  
@@ -162,4 +142,3 @@
     <script src="js/animations.js"></script>
 </body>
 </html>
- 

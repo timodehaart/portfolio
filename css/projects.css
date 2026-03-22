@@ -9,7 +9,7 @@
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 32px 32px;
 }
 
 .projects-header {
@@ -35,6 +35,13 @@
   letter-spacing: 0.04em;
 }
 
+/* ── Project item wrapper (card + below-card label row) ── */
+.project-item {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
 /* ── Individual Project Card ── */
 .project-card {
   position: relative;
@@ -45,8 +52,6 @@
   cursor: pointer;
   background: #e8e8e8;
 }
-
-
 
 /* Image fills the card */
 .project-card__img {
@@ -63,8 +68,6 @@
     filter    0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, filter;
 }
-
-/* Dark overlay removed */
 
 /* Title — centred, hidden until hover */
 .project-card__title {
@@ -84,7 +87,7 @@
   pointer-events: none;
 }
 
-.project-card__name {
+.project-card__name-hover {
   font-family: 'InterDisplay-Medium', sans-serif;
   font-size: clamp(2rem, 5vw, 4.5rem);
   font-weight: 400;
@@ -113,27 +116,28 @@
   transform: translateY(0);
 }
 
-/* ── Metadata strip (bottom-left of each card, always visible) ── */
-.project-card__meta {
-  position: absolute;
-  bottom: 2rem;
-  left: 2.2rem;
+/* ── Below-card label row ── */
+.project-card__label {
   display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  z-index: 3;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 4px;
 }
 
-.project-card__index {
+.project-card__name {
   font-family: 'ChivoMono', sans-serif;
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0);
-  letter-spacing: 0.06em;
-  transition: color 0.5s ease;
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  color: #1e1e1e;
+  letter-spacing: 0.04em;
+  padding-left: 8px;
 }
 
-.project-card:hover .project-card__index {
-  color: rgba(255, 255, 255, 0.6);
+.project-card__software {
+  font-family: 'ChivoMono', sans-serif;
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  color: #1e1e1e;
+  letter-spacing: 0.04em;
+  padding-right: 8px;
 }
 
 /* ── Mobile ── */
@@ -144,15 +148,11 @@
 
   .projects-grid {
     grid-template-columns: 1fr;
+    gap: 40px;
   }
 
   .project-card {
     height: 70vh;
     border-radius: 24px;
-  }
-
-  .project-card__meta {
-    bottom: 1.4rem;
-    left: 1.4rem;
   }
 }
