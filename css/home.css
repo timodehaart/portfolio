@@ -300,7 +300,7 @@ img {
 
 .slider-statement {
   position: absolute;
-  top: calc(var(--card-h) + 275px);
+  top: calc(var(--card-h) + 246px);
   left: 32px;
   right: 32px;
   height: 100px;
