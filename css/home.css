@@ -13,24 +13,23 @@
     font-style: normal;
 }
 
-/*
-  SCROLL FIX: Do NOT set height: 100% on html/body — that caps the
-  document height to the viewport and prevents any overflow from
-  being scrollable. Only min-height: 100vh on body is needed.
-*/
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+/* ══════════════════════════════════════════════════
+   Header
+   ══════════════════════════════════════════════════ */
+
 header {
-  padding: 32px;
+  padding: 24px 32px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 100px;
+  min-height: 80px;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -51,11 +50,13 @@ img {
   width: auto;
 }
 
+/* ── Hamburger ── */
 .hamburger {
   position: relative;
   width: 2.5rem;
   height: 2.5rem;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .hamburger::before,
@@ -89,7 +90,7 @@ img {
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  z-index: 2001; /* above header */
+  z-index: 2001;
   display: flex;
   align-items: center;
   padding-top: var(--header-h);
@@ -164,7 +165,10 @@ img {
   white-space: nowrap;
 }
 
-/* ── Hero ── */
+/* ══════════════════════════════════════════════════
+   Hero
+   ══════════════════════════════════════════════════ */
+
 .hero {
   display: flex;
   flex-direction: row;
@@ -200,7 +204,7 @@ img {
 .hero-logo { width: 680px; max-width: 100%; height: auto; }
 
 .hero-sub {
-  font-size: clamp(1.5rem, 1.5vw, 1.05rem);
+  font-size: clamp(1rem, 1.5vw, 1.05rem);
   font-family: 'InterDisplay-Medium', sans-serif;
   color: #1e1e1e;
   letter-spacing: 0.01em;
@@ -218,6 +222,7 @@ img {
   text-align: right;
 }
 
+/* ── 1200px wrap ── */
 @media (max-width: 1200px) {
   .hero { flex-wrap: wrap; justify-content: center; align-items: flex-start; row-gap: 6rem; }
   .hero-center { order: 0; flex-basis: 100%; }
@@ -225,6 +230,33 @@ img {
   .hero-right  { order: 2; flex: 1; align-self: flex-end; display: flex; justify-content: flex-end; }
 }
 
+/* ── Mobile hero ── */
+@media (max-width: 600px) {
+  .hero {
+    padding: 2rem 1rem;
+    min-height: 40vh;
+    row-gap: 2.5rem;
+  }
+
+  .hero-left,
+  .hero-right {
+    width: auto;
+    min-width: 0;
+  }
+
+  .hero-vertical {
+    font-size: 0.85rem;
+  }
+
+  .hero-links {
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-center {
+    gap: 1.4rem;
+  }
+}
 
 /* ══════════════════════════════════════════════════
    Infinite Slider
@@ -236,8 +268,31 @@ img {
   --loop-w: calc(4 * (var(--card-w) + 8px) - 8px);
 }
 
+/* ── Responsive slider card size ── */
+@media (max-width: 1024px) {
+  :root {
+    --card-w: 420px;
+    --card-h: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --card-w: 72vw;
+    --card-h: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --card-w: 80vw;
+    --card-h: 160px;
+  }
+}
+
 .slider-viewport {
-  height: calc(var(--card-h) * 2);
+  /* cards are double --card-h tall; extra room below for the statement */
+  height: calc(var(--card-h) * 2 + 160px);
   overflow-x: clip;
   overflow-y: visible;
   width: 100%;
@@ -249,7 +304,7 @@ img {
 .slider-track {
   display: flex;
   gap: 8px;
-  height: 100%;
+  height: calc(var(--card-h) * 2); /* double-height cards, matching original */
   width: max-content;
   animation: slider-scroll 28s linear infinite;
   will-change: transform;
@@ -293,17 +348,16 @@ img {
   100% { transform: translateX(calc(-1 * var(--loop-w))); }
 }
 
-
 /* ══════════════════════════════════════════════════
    Statement overlay
    ══════════════════════════════════════════════════ */
 
 .slider-statement {
   position: absolute;
-  top: calc(var(--card-h) + 246px);
+  /* sits just below the double-height card track */
+  top: calc(var(--card-h) * 2 - 166px);
   left: 32px;
   right: 32px;
-  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -314,7 +368,7 @@ img {
 
 .statement-text {
   font-family: 'InterDisplay-Medium', sans-serif;
-  font-size: clamp(1.5rem, 4.5vw, 4.2rem);
+  font-size: clamp(1.1rem, 4.5vw, 4.2rem);
   font-weight: 400;
   color: #1e1e1e;
   text-align: center;
@@ -323,17 +377,21 @@ img {
   letter-spacing: -0.01em;
 }
 
-/* ── Mobile ── */
+/* ── Mobile slider ── */
 @media (max-width: 768px) {
-  .slider-viewport { padding: 0 16px; }
+  .slider-viewport {
+    padding: 0 16px;
+  }
 
   .slider-statement {
     left: 16px;
     right: 16px;
+    padding: 0 2vw;
   }
 
-  .statement-clients { gap: 1rem; }
-  .statement-clients span { gap: 1rem; }
+  .slide-item {
+    border-radius: 32px;
+  }
 }
 
 /* ── Entrance animation base states ── */

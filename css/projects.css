@@ -3,7 +3,7 @@
    ══════════════════════════════════════════════════ */
 
 .projects-section {
-  padding: 24rem 32px 4rem;
+  padding: 16rem 32px 4rem;
 }
 
 .projects-grid {
@@ -30,9 +30,10 @@
 
 .projects-year {
   font-family: 'ChivoMono', sans-serif;
-  font-size: 1.2rem;
+  font-size: clamp(0.75rem, 1.1vw, 1.2rem);
   color: #1e1e1e;
   letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 /* ── Project item wrapper (card + below-card label row) ── */
@@ -105,15 +106,38 @@
   text-transform: uppercase;
 }
 
-/* ── Hover state ── */
-.project-card:hover .project-card__img {
-  transform: scale(1.06);
-  filter: blur(4px);
+/* ── Hover state (desktop only) ── */
+@media (hover: hover) {
+  .project-card:hover .project-card__img {
+    transform: scale(1.06);
+    filter: blur(4px);
+  }
+
+  .project-card:hover .project-card__title {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.project-card:hover .project-card__title {
-  opacity: 1;
-  transform: translateY(0);
+/* ── On touch devices: always show title overlay ── */
+@media (hover: none) {
+  .project-card__title {
+    opacity: 1;
+    transform: translateY(0);
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.55) 0%,
+      transparent 60%
+    );
+  }
+
+  .project-card__name-hover {
+    font-size: clamp(1.4rem, 6vw, 2.2rem);
+  }
+
+  .project-card__tag {
+    font-size: clamp(0.65rem, 2.5vw, 0.85rem);
+  }
 }
 
 /* ── Below-card label row ── */
@@ -126,7 +150,7 @@
 
 .project-card__name {
   font-family: 'ChivoMono', sans-serif;
-  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  font-size: clamp(0.75rem, 1.1vw, 0.95rem);
   color: #1e1e1e;
   letter-spacing: 0.04em;
   padding-left: 8px;
@@ -134,25 +158,58 @@
 
 .project-card__software {
   font-family: 'ChivoMono', sans-serif;
-  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  font-size: clamp(0.75rem, 1.1vw, 0.95rem);
   color: #1e1e1e;
   letter-spacing: 0.04em;
   padding-right: 8px;
 }
 
-/* ── Mobile ── */
-@media (max-width: 768px) {
+/* ── Tablet ── */
+@media (max-width: 1024px) {
   .projects-section {
-    padding: 4rem 16px 3rem;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    padding: 14rem 24px 4rem;
   }
 
   .project-card {
     height: 70vh;
+    border-radius: 32px;
+  }
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .projects-section {
+    padding: 5rem 16px 3rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .projects-header {
+    margin-bottom: 1.8rem;
+  }
+
+  .project-card {
+    height: 72vw;
+    min-height: 260px;
+    max-height: 480px;
     border-radius: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-section {
+    padding: 4rem 12px 2.5rem;
+  }
+
+  .projects-grid {
+    gap: 24px;
+  }
+
+  .project-card {
+    height: 78vw;
+    border-radius: 20px;
   }
 }

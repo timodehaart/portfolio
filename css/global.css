@@ -4,13 +4,12 @@
     padding: 0;
     margin: 0;
 }
- 
+
 body {
   font-family: 'InterDisplay', sans-serif;
 }
- 
+
 /* ── Frosted glass edge blur (stays while scrolling) ── */
-/* z-index below nav-overlay (1999) so menu is never blurred */
 .vignette-left,
 .vignette-right,
 .vignette-bottom {
@@ -21,7 +20,7 @@ body {
   -webkit-backdrop-filter: blur(6px);
   background: rgba(255, 255, 255, 0.1);
 }
- 
+
 /* Sides: only bottom half of the page, fade up and inward */
 .vignette-left {
   bottom: 0;
@@ -48,7 +47,7 @@ body {
                       linear-gradient(to top, black 20%, transparent 100%);
   -webkit-mask-composite: source-in;
 }
- 
+
 /* Bottom: strong at the very bottom, fades upward */
 .vignette-bottom {
   bottom: 0;
@@ -57,4 +56,23 @@ body {
   height: 180px;
   mask-image: linear-gradient(to top, black 0%, black 15%, transparent 100%);
   -webkit-mask-image: linear-gradient(to top, black 0%, black 15%, transparent 100%);
+}
+
+/* ── Scale back side vignettes on narrow screens ── */
+@media (max-width: 768px) {
+  .vignette-left,
+  .vignette-right {
+    width: 60px;
+  }
+
+  .vignette-bottom {
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vignette-left,
+  .vignette-right {
+    display: none; /* on very small phones they eat too much lateral space */
+  }
 }
