@@ -6,6 +6,7 @@
     <title>Portfolio Timo</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/home.css">
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 </head>
 <body>
     <div class="vignette-left"   aria-hidden="true"></div>
@@ -14,30 +15,33 @@
  
     <div class="container">
         <header>
-            <img src="img/logo/letter.svg" alt="Logo">
-            <div class="hamburger" id="menuToggle"></div>
-        </header>
+        <!-- add data-enter="0" to the img and hamburger -->
+        <img src="img/logo/letter.svg" alt="Logo" data-enter="0">
+        <div class="hamburger" id="menuToggle" data-enter="100"></div>
+</header>
+
     </div>
  
     <!-- Hero Section -->
     <section class="hero">
+        <!-- Hero elements -->
         <div class="hero-left">
-            <span class="hero-vertical">( Timo de Haart )</span>
+            <span class="hero-vertical" data-enter="800">( Timo de Haart )</span>
         </div>
- 
+
         <div class="hero-center">
-            <img src="img/logo/brand.svg" alt="Brand Logo" class="hero-logo">
-            <p class="hero-sub">UX/UI Designer & Frontend Developer.</p>
+            <img src="img/logo/brand.svg" alt="Brand Logo" class="hero-logo" data-enter="200">
+            <p class="hero-sub" data-enter="600">UX/UI Designer & Frontend Developer.</p>
         </div>
- 
+
         <div class="hero-right">
-            <span class="hero-links">Portfolio</span>
+            <span class="hero-links" data-enter="700">Portfolio</span>
         </div>
     </section>
  
     <!-- Infinite Slider: viewport clips to top half, full image fills each card -->
-    <div class="slider-viewport" id="sliderViewport">
-        <div class="slider-track" id="sliderTrack">
+    <div class="slider-viewport" id="sliderViewport" data-reveal>
+        <div class="slider-track" id="sliderTrack" data-enter="1200">
             <!-- Original set -->
             <div class="slide-item"><img src="img/projects/psyduck.jpg" alt="Pokemon Psyduck" draggable="false"></div>
             <div class="slide-item"><img src="img/projects/croc-poster.jpg" alt="Croc Poster" draggable="false"></div>
@@ -68,6 +72,7 @@
     </nav>
  
     <script src="js/menu.js"></script>
+    <script src="js/animations.js"></script>
 </body>
 </html>
  

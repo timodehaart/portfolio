@@ -323,3 +323,8 @@ img {
   .statement-clients { gap: 1rem; }
   .statement-clients span { gap: 1rem; }
 }
+
+/* ── Entrance animation base states ── */
+[data-enter] {
+  opacity: 0;
+}
