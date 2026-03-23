@@ -78,6 +78,24 @@
             for a graduation internship where I can use my expertise. Outside of UX/UI
             design &amp; development, I'm also into Graphic Design and a little 3D modeling.
           </p>
+
+          <!-- Resume blurb -->
+          <div class="about-info__resume">
+            <p class="about-info__resume-text">
+              Want a quick overview? My resume covers my education, skills, and experience at a glance.
+            </p>
+            <button class="resume-preview-btn" id="resumePreviewBtn" aria-label="Preview resume">
+              <svg viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+              View Resume
+            </button>
+          </div>
+
           <div class="about-info__contact">
             <span class="about-info__contact-label">Get in touch</span>
             <div class="about-contact-links">
@@ -89,7 +107,7 @@
                 <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
                 timodehaart@live.nl
               </a>
-              <a href="https://linkedin.com/in/yourprofile" target="_blank" class="about-contact-link">
+              <a href="https://linkedin.com/in/timo-de-haart" target="_blank" class="about-contact-link">
                 <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
                 LinkedIn
               </a>
@@ -146,6 +164,44 @@
       <li><a href="#"><span class="nav-index">( _04 )</span>Contact</a></li>
     </ul>
   </nav>
+
+  <!-- ═══ Resume modal ═══ -->
+  <div class="resume-modal" id="resumeModal" role="dialog" aria-modal="true" aria-label="Resume preview">
+    <div class="resume-modal__backdrop" id="resumeBackdrop"></div>
+    <div class="resume-modal__panel">
+      <div class="resume-modal__toolbar">
+        <span class="resume-modal__label">Resume — Timo de Haart</span>
+        <div class="resume-modal__actions">
+          <a
+            class="resume-modal__btn"
+            id="resumeDownloadBtn"
+            href="img/resume/resume.pdf"
+            download="Timo_de_Haart_Resume.pdf"
+            aria-label="Download resume"
+          >
+            <svg viewBox="0 0 24 24">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download
+          </a>
+          <button class="resume-modal__btn resume-modal__btn--close" id="resumeCloseBtn" aria-label="Close resume preview">
+            <svg viewBox="0 0 24 24">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <img
+        class="resume-modal__frame"
+        id="resumeFrame"
+        src=""
+        alt="Resume preview"
+      >
+    </div>
+  </div>
 
   <script src="js/app.js"></script>
 </body>

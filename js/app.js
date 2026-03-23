@@ -33,6 +33,42 @@ toggle.addEventListener('click', () => {
   header.classList.toggle('menu-open', open);
 });
 
+/* ─────────────────────────────────────
+   Resume modal
+───────────────────────────────────── */
+const resumeModal      = document.getElementById('resumeModal');
+const resumeFrame      = document.getElementById('resumeFrame');
+const resumePreviewBtn = document.getElementById('resumePreviewBtn');
+const resumeCloseBtn   = document.getElementById('resumeCloseBtn');
+const resumeBackdrop   = document.getElementById('resumeBackdrop');
+
+const RESUME_PDF = './img/resume/resume.pdf';
+const RESUME_PREVIEW = './img/resume/resume.jpg';
+
+function openResumeModal() {
+  resumeFrame.src = RESUME_PREVIEW;
+  resumeModal.classList.add('is-open');
+  lenis.stop();
+  document.body.style.overflow = 'hidden';
+}
+
+function closeResumeModal() {
+  resumeModal.classList.remove('is-open');
+  resumeFrame.src = '';
+  lenis.start();
+  document.body.style.overflow = '';
+}
+
+resumePreviewBtn?.addEventListener('click', openResumeModal);
+resumeCloseBtn?.addEventListener('click', closeResumeModal);
+resumeBackdrop?.addEventListener('click', closeResumeModal);
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && resumeModal.classList.contains('is-open')) {
+    closeResumeModal();
+  }
+});
+
 /* ── SPA pages ── */
 const pageMain   = document.getElementById('pageMain');
 const pageDetail = document.getElementById('pageDetail');
