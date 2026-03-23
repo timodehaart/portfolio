@@ -15,11 +15,11 @@ document.querySelectorAll('[data-enter]').forEach((el) => {
 });
 
 /* ── Scroll reveal ── */
-const observer = new IntersectionObserver(
-  (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); } }),
+const revealObserver = new IntersectionObserver(
+  (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); revealObserver.unobserve(e.target); } }),
   { threshold: 0.15 }
 );
-document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+document.querySelectorAll('[data-reveal]').forEach((el) => revealObserver.observe(el));
 
 /* ── Nav toggle ── */
 const toggle  = document.getElementById('menuToggle');
@@ -33,28 +33,71 @@ toggle.addEventListener('click', () => {
   header.classList.toggle('menu-open', open);
 });
 
-/* ── Projects: load from JSON, render, handle detail ── */
+/* ── SPA pages ── */
+const pageMain   = document.getElementById('pageMain');
+const pageDetail = document.getElementById('pageDetail');
+
+function showMain() {
+  pageDetail.classList.remove('is-active');
+  pageMain.style.display = '';
+  lenis.scrollTo(0, { immediate: true });
+}
+
+function showDetail(project) {
+  /* populate left panel */
+  pageDetail.querySelector('.detail-tag').textContent   = project.tag;
+  pageDetail.querySelector('.detail-title').textContent = project.title;
+  pageDetail.querySelector('.detail-desc').textContent  = project.description;
+  pageDetail.querySelector('.detail-year').textContent  = `( _©${project.year} )`;
+
+  /* deliverables list */
+  const delList = pageDetail.querySelector('.detail-deliverables');
+  delList.innerHTML = project.deliverables
+    .map((d) => `<li class="detail-meta__item">${d}</li>`)
+    .join('');
+
+  /* tools list */
+  const toolList = pageDetail.querySelector('.detail-tools');
+  toolList.innerHTML = project.tools
+    .map((t) => `<li class="detail-meta__item">${t}</li>`)
+    .join('');
+
+  /* right image stack */
+  const imgStack = pageDetail.querySelector('.detail-right');
+  imgStack.innerHTML = project.images
+    .map(({ src, alt }) => `<div class="detail-img"><img src="${src}" alt="${alt}" loading="lazy"></div>`)
+    .join('');
+
+  pageMain.style.display = 'none';
+  pageDetail.classList.add('is-active');
+  lenis.scrollTo(0, { immediate: true });
+}
+
+/* ── Projects: load from JSON, render cards + slider ── */
 async function initProjects() {
   const res  = await fetch('data/projects.json');
   const { slider, projects } = await res.json();
 
+  /* slider — duplicate for seamless loop */
   const track = document.getElementById('sliderTrack');
-  track.innerHTML = [...slider, ...slider].map(renderSlide).join('');
+  track.innerHTML = [...slider, ...slider]
+    .map(({ img, alt }) => `<div class="slide-item"><img src="${img}" alt="${alt}" draggable="false"></div>`)
+    .join('');
 
+  /* project grid */
   const grid = document.getElementById('projectsGrid');
   grid.innerHTML = projects.map(renderCard).join('');
 
-  /* open detail on card click */
+  /* card click → detail view */
   grid.addEventListener('click', (e) => {
     const card = e.target.closest('[data-project-id]');
     if (!card) return;
     const project = projects.find((p) => p.id === card.dataset.projectId);
-    if (project) openDetail(project);
+    if (project) showDetail(project);
   });
-}
 
-function renderSlide({ img, alt }) {
-  return `<div class="slide-item"><img src="${img}" alt="${alt}" draggable="false"></div>`;
+  /* back button */
+  document.getElementById('detailBack').addEventListener('click', showMain);
 }
 
 function renderCard({ id, title, tag, software, img, alt }) {
@@ -73,28 +116,5 @@ function renderCard({ id, title, tag, software, img, alt }) {
       </div>
     </div>`;
 }
-
-/* ── Project detail panel ── */
-const detail = document.getElementById('projectDetail');
-
-function openDetail({ title, tag, software, img, alt }) {
-  detail.querySelector('.project-detail__title').textContent    = title;
-  detail.querySelector('.project-detail__tag').textContent      = tag;
-  detail.querySelector('.project-detail__software').textContent = software;
-  const image = detail.querySelector('.project-detail__img img');
-  image.src = img;
-  image.alt = alt;
-  detail.classList.add('is-open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeDetail() {
-  detail.classList.remove('is-open');
-  document.body.style.overflow = '';
-}
-
-document.getElementById('detailClose').addEventListener('click', closeDetail);
-detail.addEventListener('click', (e) => { if (e.target === detail) closeDetail(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDetail(); });
 
 initProjects();

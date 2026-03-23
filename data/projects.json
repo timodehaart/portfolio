@@ -1,42 +1,76 @@
 {
   "slider": [
-    { "img": "img/projects/psyduck.jpg",       "alt": "Pokemon Psyduck" },
-    { "img": "img/projects/croc-poster.jpg",   "alt": "Croc Poster" },
-    { "img": "img/projects/heart-poster.jpg",  "alt": "Heart Poster" },
-    { "img": "img/projects/skating-poster.jpg","alt": "Skating Poster" }
+    { "img": "img/projects/psyduck.jpg",        "alt": "Pokemon Psyduck" },
+    { "img": "img/projects/croc-poster.jpg",    "alt": "Croc Poster" },
+    { "img": "img/projects/heart-poster.jpg",   "alt": "Heart Poster" },
+    { "img": "img/projects/skating-poster.jpg", "alt": "Skating Poster" }
   ],
   "projects": [
-  {
-    "id": "psyduck",
-    "title": "Psyduck",
-    "tag": "Branding / Illustration",
-    "software": "_Blender",
-    "img": "img/projects/psyduck.jpg",
-    "alt": "Pokemon Psyduck"
-  },
-  {
-    "id": "croc-poster",
-    "title": "Croc Poster",
-    "tag": "Poster Design",
-    "software": "_Photoshop",
-    "img": "img/projects/croc-poster.jpg",
-    "alt": "Croc Poster"
-  },
-  {
-    "id": "heart-poster",
-    "title": "Heart Poster",
-    "tag": "Editorial / Print",
-    "software": "_Photoshop",
-    "img": "img/projects/heart-poster.jpg",
-    "alt": "Heart Poster"
-  },
-  {
-    "id": "skating-poster",
-    "title": "Skating Poster",
-    "tag": "Photography / Layout",
-    "software": "_Photoshop",
-    "img": "img/projects/skating-poster.jpg",
-    "alt": "Skating Poster"
-  }
+    {
+      "id": "psyduck",
+      "title": "Psyduck",
+      "tag": "Branding / Illustration",
+      "software": "_Blender",
+      "img": "img/projects/psyduck.jpg",
+      "alt": "Pokemon Psyduck",
+      "description": "A 3D illustration project centred around the beloved Pokémon Psyduck. The goal was to recreate the character in a stylised, tactile way — experimenting with soft lighting, material shading, and render composition inside Blender.",
+      "deliverables": ["3D Modelling", "Texturing & Shading", "Render Composition", "Brand Illustration"],
+      "tools": ["Blender", "Photoshop"],
+      "year": "2025",
+      "images": [
+        { "src": "img/projects/psyduck.jpg", "alt": "Psyduck front view" },
+        { "src": "img/projects/psyduck.jpg", "alt": "Psyduck side view" },
+        { "src": "img/projects/psyduck.jpg", "alt": "Psyduck detail" }
+      ]
+    },
+    {
+      "id": "croc-poster",
+      "title": "Croc Poster",
+      "tag": "Poster Design",
+      "software": "_Photoshop",
+      "img": "img/projects/croc-poster.jpg",
+      "alt": "Croc Poster",
+      "description": "A bold editorial poster exploring texture, contrast, and typographic hierarchy. The composition uses strong diagonals and layered photography to create visual tension that draws the eye through the frame.",
+      "deliverables": ["Poster Design", "Typography", "Photo Editing", "Print-ready Export"],
+      "tools": ["Photoshop", "Illustrator"],
+      "year": "2025",
+      "images": [
+        { "src": "img/projects/croc-poster.jpg", "alt": "Croc Poster full" },
+        { "src": "img/projects/croc-poster.jpg", "alt": "Croc Poster detail" }
+      ]
+    },
+    {
+      "id": "heart-poster",
+      "title": "Heart Poster",
+      "tag": "Editorial / Print",
+      "software": "_Photoshop",
+      "img": "img/projects/heart-poster.jpg",
+      "alt": "Heart Poster",
+      "description": "An editorial print piece that blends photography with graphic elements to evoke emotion. The layout balances negative space with dense imagery, resulting in a poster that feels both calm and intense.",
+      "deliverables": ["Editorial Layout", "Photo Manipulation", "Colour Grading", "Print Design"],
+      "tools": ["Photoshop", "InDesign"],
+      "year": "2025",
+      "images": [
+        { "src": "img/projects/heart-poster.jpg", "alt": "Heart Poster full" },
+        { "src": "img/projects/heart-poster.jpg", "alt": "Heart Poster crop" }
+      ]
+    },
+    {
+      "id": "skating-poster",
+      "title": "Skating Poster",
+      "tag": "Photography / Layout",
+      "software": "_Photoshop",
+      "img": "img/projects/skating-poster.jpg",
+      "alt": "Skating Poster",
+      "description": "A photography-led poster for the skating scene. Shot and designed to capture the raw energy of street skating — high contrast, gritty grain, and a layout that feels in motion even when still.",
+      "deliverables": ["Photography", "Poster Layout", "Retouching", "Grain & Texture"],
+      "tools": ["Photoshop", "Lightroom"],
+      "year": "2026",
+      "images": [
+        { "src": "img/projects/skating-poster.jpg", "alt": "Skating Poster full" },
+        { "src": "img/projects/skating-poster.jpg", "alt": "Skating detail shot" },
+        { "src": "img/projects/skating-poster.jpg", "alt": "Skating close-up" }
+      ]
+    }
   ]
 }
