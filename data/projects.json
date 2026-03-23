@@ -1,0 +1,42 @@
+{
+  "slider": [
+    { "img": "img/projects/psyduck.jpg",       "alt": "Pokemon Psyduck" },
+    { "img": "img/projects/croc-poster.jpg",   "alt": "Croc Poster" },
+    { "img": "img/projects/heart-poster.jpg",  "alt": "Heart Poster" },
+    { "img": "img/projects/skating-poster.jpg","alt": "Skating Poster" }
+  ],
+  "projects": [
+  {
+    "id": "psyduck",
+    "title": "Psyduck",
+    "tag": "Branding / Illustration",
+    "software": "_Blender",
+    "img": "img/projects/psyduck.jpg",
+    "alt": "Pokemon Psyduck"
+  },
+  {
+    "id": "croc-poster",
+    "title": "Croc Poster",
+    "tag": "Poster Design",
+    "software": "_Photoshop",
+    "img": "img/projects/croc-poster.jpg",
+    "alt": "Croc Poster"
+  },
+  {
+    "id": "heart-poster",
+    "title": "Heart Poster",
+    "tag": "Editorial / Print",
+    "software": "_Photoshop",
+    "img": "img/projects/heart-poster.jpg",
+    "alt": "Heart Poster"
+  },
+  {
+    "id": "skating-poster",
+    "title": "Skating Poster",
+    "tag": "Photography / Layout",
+    "software": "_Photoshop",
+    "img": "img/projects/skating-poster.jpg",
+    "alt": "Skating Poster"
+  }
+  ]
+}
