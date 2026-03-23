@@ -354,7 +354,7 @@ header.menu-open { background:transparent; backdrop-filter:none; z-index:2002; }
 
 .detail-body {
   display: flex; align-items: flex-start;
-  padding: 5rem 100px 6rem; gap: 6vw;
+  padding: 48px 100px 6rem; gap: 6vw;
 }
 
 /* sticky left panel */
@@ -638,8 +638,9 @@ header.menu-open { background:transparent; backdrop-filter:none; z-index:2002; }
   padding:.55rem 1.1rem; border:1px solid rgba(30,30,30,.15); border-radius:999px;
   transition: background .4s var(--ease), border-color .4s var(--ease), color .4s var(--ease);
 }
-.about-contact-link:hover { background:rgba(244,186,203,.25); border-color:var(--pink); color:var(--ink); }
-.about-contact-link svg { width:13px; height:13px; fill:none; stroke:currentColor; stroke-width:1.8; flex-shrink:0; }
+.about-contact-link:hover { background:var(--ink); border-color:var(--ink); color:#fff; }
+.about-contact-link:hover svg { stroke:#fff; }
+.about-contact-link svg { width:13px; height:13px; fill:none; stroke:currentColor; stroke-width:1.8; flex-shrink:0; transition: stroke .4s var(--ease); }
 
 @media (max-width:1024px) {
   .about-section { padding:6rem 60px 4rem; }
@@ -756,6 +757,51 @@ header.menu-open { background:transparent; backdrop-filter:none; z-index:2002; }
 @media (max-width:600px) {
   .resume-modal { padding: 0; }
   .resume-modal__panel { border-radius: 20px 20px 0 0; height: 95vh; width: 100%; align-self: flex-end; }
+}
+
+/* ─────────────────────────────────────
+   Footer
+───────────────────────────────────── */
+.site-footer {
+  padding: 3rem 100px;
+  border-top: 1px solid rgba(30,30,30,.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  z-index: 1600;
+  background: #fff;  
+}
+
+.site-footer__copy {
+  font-family: 'ChivoMono', sans-serif;
+  font-size: clamp(.68rem, 1vw, .82rem);
+  color: rgba(30,30,30,.35);
+  letter-spacing: .06em;
+}
+
+.site-footer__links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.site-footer__link {
+  font-family: 'ChivoMono', sans-serif;
+  font-size: clamp(.68rem, 1vw, .82rem);
+  color: rgba(30,30,30,.4);
+  text-decoration: none;
+  letter-spacing: .06em;
+  transition: color .3s var(--ease);
+}
+.site-footer__link:hover { color: var(--ink); }
+
+@media (max-width: 768px) {
+  .site-footer { padding: 2.5rem 40px; flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+}
+@media (max-width: 480px) {
+  .site-footer { padding: 2rem 24px; }
 }
 
 /* ─────────────────────────────────────
