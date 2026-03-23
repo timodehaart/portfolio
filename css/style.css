@@ -200,13 +200,13 @@ header.menu-open { background:transparent; backdrop-filter:none; z-index:2002; }
    Slider
 ───────────────────────────────────── */
 :root {
-  --card-w: 720px;
-  --card-h: 420px;
+  --card-w: 520px;
+  --card-h: 320px;
   --loop-w: calc(7 * (var(--card-w) + 8px) - 8px);
 }
-@media (max-width:1024px) { :root { --card-w:560px; --card-h:320px; } }
-@media (max-width:768px)  { :root { --card-w:82vw;  --card-h:220px; } }
-@media (max-width:480px)  { :root { --card-w:88vw;  --card-h:180px; } }
+@media (max-width:1024px) { :root { --card-w:400px; --card-h:240px; } }
+@media (max-width:768px)  { :root { --card-w:70vw;  --card-h:180px; } }
+@media (max-width:480px)  { :root { --card-w:80vw;  --card-h:150px; } }
 
 .slider-viewport {
   height: calc(var(--card-h) * 2 + 280px);
@@ -369,6 +369,7 @@ header.menu-open { background:transparent; backdrop-filter:none; z-index:2002; }
 .detail-left {
   flex: 0 0 32%; position: sticky; top: 100px;
   display: flex; flex-direction: column; gap: 2.4rem;
+  z-index: 1600;
 }
 
 .detail-title {

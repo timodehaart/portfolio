@@ -67,7 +67,7 @@
     "title": "Sprout Up",
     "tag": "App Design / Development",
     "software": "_Flutter",
-    "img": "img/projects/sproutup/sproutup1.png",
+    "img": "img/projects/sproutup/sproutup2.png",
     "alt": "Sprout Up App",
     "description": "Sprout Up is an app concept focused on promoting plant growth in a fun and engaging way. Users can collect trees in the app and earn in-game money, which they can use to unlock and grow more trees.\n\nThe idea behind the app is that when a user buys a tree, a real tree is planted in that country. This creates a sense of impact, where users are not only collecting digitally but also contributing to real-world environmental growth.\n\nThrough this project, I worked on designing the app in Figma and building it using Flutter. It helped me understand how to turn a concept into an interactive app while focusing on both user engagement and meaningful impact.",
     "deliverables": ["App Concept", "UI/UX Design", "Mobile Development"],

@@ -33,6 +33,18 @@ toggle.addEventListener('click', () => {
   header.classList.toggle('menu-open', open);
 });
 
+overlay.querySelectorAll('.nav-list a').forEach((link) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    overlay.classList.remove('is-open');
+    toggle.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', false);
+    header.classList.remove('menu-open');
+    if (target) lenis.scrollTo(target, { duration: 1.4 });
+  });
+});
+
 /* ─────────────────────────────────────
    Resume modal
 ───────────────────────────────────── */
