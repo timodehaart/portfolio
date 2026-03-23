@@ -55,7 +55,7 @@ const resumeCloseBtn   = document.getElementById('resumeCloseBtn');
 const resumeBackdrop   = document.getElementById('resumeBackdrop');
 
 const RESUME_PDF = './img/resume/resume.pdf';
-const RESUME_PREVIEW = './img/resume/resume.jpg';
+const RESUME_PREVIEW = './img/resume/resume.png';
 
 function openResumeModal() {
   resumeFrame.src = RESUME_PREVIEW;
