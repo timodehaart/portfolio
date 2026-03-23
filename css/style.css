@@ -193,13 +193,13 @@ header.menu-open { background:transparent; backdrop-filter:none; z-index:2002; }
    Slider
 ───────────────────────────────────── */
 :root {
-  --card-w: 500px;
-  --card-h: 320px;
-  --loop-w: calc(4 * (var(--card-w) + 8px) - 8px);
+  --card-w: 720px;
+  --card-h: 420px;
+  --loop-w: calc(7 * (var(--card-w) + 8px) - 8px);
 }
-@media (max-width:1024px) { :root { --card-w:420px; --card-h:260px; } }
-@media (max-width:768px)  { :root { --card-w:72vw;  --card-h:200px; } }
-@media (max-width:480px)  { :root { --card-w:80vw;  --card-h:160px; } }
+@media (max-width:1024px) { :root { --card-w:560px; --card-h:320px; } }
+@media (max-width:768px)  { :root { --card-w:82vw;  --card-h:220px; } }
+@media (max-width:480px)  { :root { --card-w:88vw;  --card-h:180px; } }
 
 .slider-viewport {
   height: calc(var(--card-h) * 2 + 280px);
@@ -221,7 +221,7 @@ header.menu-open { background:transparent; backdrop-filter:none; z-index:2002; }
 }
 .slide-item img {
   width:100% !important; height:100% !important;
-  object-fit:cover; object-position:center top;
+  object-fit:cover; object-position:center center;
   display:block; pointer-events:none; user-select:none;
 }
 .slide-item::after {
@@ -294,6 +294,7 @@ header.menu-open { background:transparent; backdrop-filter:none; z-index:2002; }
   z-index:2; opacity:0; transform:translateY(18px);
   transition: opacity .65s var(--ease), transform .65s var(--ease);
   pointer-events:none;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.28) 0%, rgba(0,0,0,.12) 60%, transparent 100%);
 }
 .project-card__name-hover {
   font-family:'InterDisplay-Medium', sans-serif;

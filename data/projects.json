@@ -1,9 +1,12 @@
 {
   "slider": [
-    { "img": "img/projects/psyduck.jpg",        "alt": "Pokemon Psyduck" },
-    { "img": "img/projects/croc-poster.jpg",    "alt": "Croc Poster" },
-    { "img": "img/projects/heart-poster.jpg",   "alt": "Heart Poster" },
-    { "img": "img/projects/skating-poster.jpg", "alt": "Skating Poster" }
+    { "img": "img/projects/webshop/webshop1.png",       "alt": "Webshop Home" },
+    { "img": "img/projects/posters/poster3.png",        "alt": "Crocodile Poster" },
+    { "img": "img/projects/samenaanz/samenaanz5.png", "alt": "Samen aan Z Dashboard" },
+    { "img": "img/projects/posters/poster2.png",        "alt": "Heart Racing Poster" },
+    { "img": "img/projects/sproutup/sproutup2.png",    "alt": "Sprout Up Home" },
+    { "img": "img/projects/bluelock/bluelock3.png",    "alt": "Blue Lock Cards" },
+    { "img": "img/projects/posters/poster1.png",        "alt": "Skating Poster" }
   ],
   "projects": [
     {
