@@ -21,7 +21,6 @@
   <!-- ═══ MAIN INDEX ═══ -->
   <div id="pageMain">
 
-    <!-- Hero -->
     <section class="hero">
       <div class="hero-left">
         <span class="hero-vertical" data-enter="800">( Timo de Haart )</span>
@@ -35,7 +34,6 @@
       </div>
     </section>
 
-    <!-- Slider — images injected by app.js -->
     <div class="slider-viewport" data-reveal>
       <div class="slider-track" id="sliderTrack"></div>
       <div class="slider-statement">
@@ -45,7 +43,6 @@
       </div>
     </div>
 
-    <!-- Projects — cards injected by app.js -->
     <section class="projects-section" data-reveal>
       <div class="projects-header">
         <h2 class="projects-title">Projects<br>Showcase.</h2>
@@ -54,7 +51,6 @@
       <div class="projects-grid" id="projectsGrid"></div>
     </section>
 
-    <!-- About -->
     <section class="about-section" data-reveal>
       <div class="about-header">
         <span class="about-eyebrow">( About me )</span>
@@ -107,34 +103,38 @@
 
   <!-- ═══ PROJECT DETAIL (SPA) ═══ -->
   <div id="pageDetail" class="page-detail">
-    <button class="detail-back" id="detailBack">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      Back
-    </button>
     <div class="detail-body">
 
-      <!-- sticky left -->
+      <!-- sticky left: title + stripe meta -->
       <div class="detail-left">
-        <span class="detail-tag"></span>
         <h1 class="detail-title"></h1>
         <p class="detail-desc"></p>
-        <div class="detail-meta">
-          <div class="detail-meta__group">
-            <span class="detail-meta__label">Deliverables</span>
-            <ul class="detail-meta__list detail-deliverables"></ul>
-          </div>
-          <div class="detail-meta__group">
-            <span class="detail-meta__label">Tools</span>
-            <ul class="detail-meta__list detail-tools"></ul>
-          </div>
-        </div>
-        <span class="detail-year"></span>
+        <!-- stripe rows injected by JS -->
+        <div class="detail-meta" id="detailMeta"></div>
       </div>
 
-      <!-- scrollable right -->
+      <!-- scrollable right: description + images -->
       <div class="detail-right"></div>
 
     </div>
+
+    <!-- More projects -->
+    <section class="more-projects-section">
+      <div class="more-projects-header">
+        <h2 class="more-projects-title">More projects.</h2>
+        <div class="more-projects-nav">
+          <button class="more-projects-arrow" id="morePrev" aria-label="Previous">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="more-projects-arrow" id="moreNext" aria-label="Next">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="more-projects-strip-wrap">
+        <div class="more-projects-strip" id="moreProjectsStrip"></div>
+      </div>
+    </section>
   </div><!-- /#pageDetail -->
 
   <!-- Nav overlay -->

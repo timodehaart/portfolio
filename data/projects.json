@@ -7,70 +7,91 @@
   ],
   "projects": [
     {
-      "id": "psyduck",
-      "title": "Psyduck",
-      "tag": "Branding / Illustration",
-      "software": "_Blender",
-      "img": "img/projects/psyduck.jpg",
-      "alt": "Pokemon Psyduck",
-      "description": "A 3D illustration project centred around the beloved Pokémon Psyduck. The goal was to recreate the character in a stylised, tactile way — experimenting with soft lighting, material shading, and render composition inside Blender.",
-      "deliverables": ["3D Modelling", "Texturing & Shading", "Render Composition", "Brand Illustration"],
-      "tools": ["Blender", "Photoshop"],
-      "year": "2025",
-      "images": [
-        { "src": "img/projects/psyduck.jpg", "alt": "Psyduck front view" },
-        { "src": "img/projects/psyduck.jpg", "alt": "Psyduck side view" },
-        { "src": "img/projects/psyduck.jpg", "alt": "Psyduck detail" }
-      ]
+    "id": "webshop",
+    "title": "Webshop.",
+    "tag": "Figma / Clickable Prototype",
+    "software": "_Figma",
+    "img": "img/projects/webshop/webshop1.png",
+    "alt": "Webshop",
+    "description": "Making this fully clickable webshop prototype in Figma helped me understand how a real website works, not just how it looks. I connected all the pages so users can click through categories, view products, and move between screens easily.\n\nThis project also showed me how small design details like buttons, hover effects, and transitions can make a big difference. It helped me focus on creating a simple, clean, and user-friendly experience.",
+    "deliverables": ["Figma Design", "Interactive / Clickable Prototype"],
+    "tools": ["Figma"],
+    "year": "2023",
+    "images": [
+        { "src": "img/projects/webshop/webshop1.png", "alt": "Home Page" },
+        { "src": "img/projects/webshop/webshop2.png", "alt": "Funko Pop Page" },
+        { "src": "img/projects/webshop/webshop3.png", "alt": "Cart" },
+        { "src": "img/projects/webshop/webshop4.png", "alt": "Account Creation" }
+    ]
     },
     {
-      "id": "croc-poster",
-      "title": "Croc Poster",
-      "tag": "Poster Design",
-      "software": "_Photoshop",
-      "img": "img/projects/croc-poster.jpg",
-      "alt": "Croc Poster",
-      "description": "A bold editorial poster exploring texture, contrast, and typographic hierarchy. The composition uses strong diagonals and layered photography to create visual tension that draws the eye through the frame.",
-      "deliverables": ["Poster Design", "Typography", "Photo Editing", "Print-ready Export"],
-      "tools": ["Photoshop", "Illustrator"],
-      "year": "2025",
-      "images": [
-        { "src": "img/projects/croc-poster.jpg", "alt": "Croc Poster full" },
-        { "src": "img/projects/croc-poster.jpg", "alt": "Croc Poster detail" }
-      ]
+    "id": "posters",
+    "title": "Photoshop Posters",
+    "tag": "Graphic Design / Posters",
+    "software": "_Photoshop",
+    "img": "img/projects/posters/allposters.png",
+    "alt": "Poster Designs",
+    "description": "For this project, I wanted to improve my skills in Adobe Photoshop while experimenting more with graphic design. I didn’t have much experience with Photoshop yet, so this was a good way to learn by doing.\n\nBy creating three different posters, I explored different styles like photo-based design, minimalism, and collage. I worked with layers, masking, typography, textures, and composition, which helped me better understand both Photoshop and design basics.",
+    "deliverables": ["Poster Design", "Graphic Exploration"],
+    "tools": ["Photoshop"],
+    "year": "2026",
+    "images": [
+        { "src": "img/projects/posters/poster1.png", "alt": "Poster Skating" },
+        { "src": "img/projects/posters/poster2.png", "alt": "Poster Racing Heart" },
+        { "src": "img/projects/posters/poster3.png", "alt": "Poster Crocodile" }
+    ]
     },
     {
-      "id": "heart-poster",
-      "title": "Heart Poster",
-      "tag": "Editorial / Print",
-      "software": "_Photoshop",
-      "img": "img/projects/heart-poster.jpg",
-      "alt": "Heart Poster",
-      "description": "An editorial print piece that blends photography with graphic elements to evoke emotion. The layout balances negative space with dense imagery, resulting in a poster that feels both calm and intense.",
-      "deliverables": ["Editorial Layout", "Photo Manipulation", "Colour Grading", "Print Design"],
-      "tools": ["Photoshop", "InDesign"],
-      "year": "2025",
-      "images": [
-        { "src": "img/projects/heart-poster.jpg", "alt": "Heart Poster full" },
-        { "src": "img/projects/heart-poster.jpg", "alt": "Heart Poster crop" }
-      ]
+    "id": "samen-aan-z",
+    "title": "Samen aan Z",
+    "tag": "UX / Web Development",
+    "software": "_Angular",
+    "img": "img/projects/samenaanz/samenaanz2.png",
+    "alt": "Samen aan Z Platform",
+    "description": "During my internship, I worked on 'Samen aan Z', a data collection platform for researchers to gather insights from hospitals to improve staff well-being and reduce burnout.\n\nIn 5 weeks, I worked on researching and redesigning the platform, and then helped build it using Angular (Module Federation) and Tailwind CSS. The project was a collaboration with Fontys Research Groups and the company Stormin, funded by the government.\n\nThrough this project, I learned a lot about working with frameworks, setting up scalable foundations, and building a system that can grow into a larger platform that not only uses surveys, but also other data sources in the future.",
+    "deliverables": ["UX Research", "UI Redesign", "Frontend Development"],
+    "tools": ["Angular", "Tailwind CSS", "Figma"],
+    "year": "2024",
+    "images": [
+        { "src": "img/projects/samenaanz/samenaanz2.png", "alt": "Dashboard" },
+        { "src": "img/projects/samenaanz/samenaanz3.png", "alt": "Survey Flow" },
+        { "src": "img/projects/samenaanz/samenaanz4.png", "alt": "Walkthrough" },
+        { "src": "img/projects/samenaanz/samenaanz1.png", "alt": "Angular Module Federation" }
+    ]
     },
     {
-      "id": "skating-poster",
-      "title": "Skating Poster",
-      "tag": "Photography / Layout",
-      "software": "_Photoshop",
-      "img": "img/projects/skating-poster.jpg",
-      "alt": "Skating Poster",
-      "description": "A photography-led poster for the skating scene. Shot and designed to capture the raw energy of street skating — high contrast, gritty grain, and a layout that feels in motion even when still.",
-      "deliverables": ["Photography", "Poster Layout", "Retouching", "Grain & Texture"],
-      "tools": ["Photoshop", "Lightroom"],
-      "year": "2026",
-      "images": [
-        { "src": "img/projects/skating-poster.jpg", "alt": "Skating Poster full" },
-        { "src": "img/projects/skating-poster.jpg", "alt": "Skating detail shot" },
-        { "src": "img/projects/skating-poster.jpg", "alt": "Skating close-up" }
-      ]
+    "id": "sprout-up",
+    "title": "Sprout Up",
+    "tag": "App Design / Development",
+    "software": "_Flutter",
+    "img": "img/projects/sproutup/sproutup1.png",
+    "alt": "Sprout Up App",
+    "description": "Sprout Up is an app concept focused on promoting plant growth in a fun and engaging way. Users can collect trees in the app and earn in-game money, which they can use to unlock and grow more trees.\n\nThe idea behind the app is that when a user buys a tree, a real tree is planted in that country. This creates a sense of impact, where users are not only collecting digitally but also contributing to real-world environmental growth.\n\nThrough this project, I worked on designing the app in Figma and building it using Flutter. It helped me understand how to turn a concept into an interactive app while focusing on both user engagement and meaningful impact.",
+    "deliverables": ["App Concept", "UI/UX Design", "Mobile Development"],
+    "tools": ["Figma", "Flutter"],
+    "year": "2024",
+    "images": [
+        { "src": "img/projects/sproutup/sproutup1.png", "alt": "Splash Screen" },
+        { "src": "img/projects/sproutup/sproutup2.png", "alt": "Home Planting Trees" },
+        { "src": "img/projects/sproutup/sproutup3.png", "alt": "Shopping Page" }
+    ]
+    },
+        {
+    "id": "blue-lock-cards",
+    "title": "Blue Lock Cards",
+    "tag": "Web Design / Development",
+    "software": "_HTML/CSS/JS",
+    "img": "img/projects/bluelock/bluelock1.png",
+    "alt": "Blue Lock Cards Website",
+    "description": "This was an early passion project where I designed and built a website for collecting exclusive Blue Lock cards. Users can slide through different cards and explore characters in an interactive way.\n\nI went through multiple design iterations, improving the layout and interactions based on feedback from others. This helped me understand how small changes can improve the overall user experience.\n\nI built the final version using HTML, CSS, and JavaScript to test my understanding of the basics. Since this was before AI tools were common, it really pushed me to figure things out myself and strengthen my foundation in front-end development.",
+    "deliverables": ["Website Design", "Frontend Development", "Interactive UI"],
+    "tools": ["HTML", "CSS", "JavaScript"],
+    "year": "2022",
+    "images": [
+        { "src": "img/projects/bluelock/bluelock2.png", "alt": "First Design" },
+        { "src": "img/projects/bluelock/bluelock3.png", "alt": "Iteration" },
+        { "src": "img/projects/bluelock/bluelock1.png", "alt": "Final Version" }
+    ]
     }
   ]
 }

@@ -37,48 +37,143 @@ toggle.addEventListener('click', () => {
 const pageMain   = document.getElementById('pageMain');
 const pageDetail = document.getElementById('pageDetail');
 
-function showMain() {
+let allProjects = [];
+
+/* ── More-projects strip slider ── */
+let stripOffset  = 0;   // current card index offset
+let stripVisible = 3;   // how many cards are visible (recalculated on resize)
+let stripTotal   = 0;
+
+function getStripVisible() {
+  if (window.innerWidth <= 768) return 1;
+  if (window.innerWidth <= 1024) return 2;
+  return 3;
+}
+
+function updateStripArrows(others) {
+  const prev = document.getElementById('morePrev');
+  const next = document.getElementById('moreNext');
+  if (!prev || !next) return;
+  prev.disabled = stripOffset <= 0;
+  next.disabled = stripOffset + stripVisible >= others.length;
+}
+
+function setStripOffset(offset, others) {
+  const strip = document.getElementById('moreProjectsStrip');
+  if (!strip) return;
+  stripVisible = getStripVisible();
+  const cardWidth = strip.children[0]
+    ? strip.children[0].getBoundingClientRect().width
+    : 0;
+  const gap = 24;
+  strip.style.transform = `translateX(calc(-${offset} * (${cardWidth}px + ${gap}px)))`;
+  stripOffset = offset;
+  updateStripArrows(others);
+}
+
+function buildMoreStrip(others, currentProject) {
+  const strip = document.getElementById('moreProjectsStrip');
+  strip.innerHTML = others.map(renderCard).join('');
+  strip.style.transform = 'translateX(0)';
+  stripOffset = 0;
+  stripTotal  = others.length;
+  stripVisible = getStripVisible();
+
+  /* wire card clicks */
+  strip.querySelectorAll('[data-project-id]').forEach((card) => {
+    card.addEventListener('click', () => {
+      const p = allProjects.find((x) => x.id === card.dataset.projectId);
+      if (p) showDetail(p);
+    });
+  });
+
+  /* arrow buttons */
+  const prev = document.getElementById('morePrev');
+  const next = document.getElementById('moreNext');
+
+  // remove old listeners by cloning
+  const newPrev = prev.cloneNode(true);
+  const newNext = next.cloneNode(true);
+  prev.parentNode.replaceChild(newPrev, prev);
+  next.parentNode.replaceChild(newNext, next);
+
+  newPrev.addEventListener('click', () => {
+    if (stripOffset > 0) setStripOffset(stripOffset - 1, others);
+  });
+  newNext.addEventListener('click', () => {
+    if (stripOffset + getStripVisible() < others.length) setStripOffset(stripOffset + 1, others);
+  });
+
+  updateStripArrows(others);
+}
+
+/* ── Show/hide pages ── */
+function showMain(pushState = true) {
   pageDetail.classList.remove('is-active');
   pageMain.style.display = '';
   lenis.scrollTo(0, { immediate: true });
+  if (pushState) history.pushState({ view: 'main' }, '');
 }
 
-function showDetail(project) {
-  /* populate left panel */
-  pageDetail.querySelector('.detail-tag').textContent   = project.tag;
+function showDetail(project, pushState = true) {
+  /* title */
   pageDetail.querySelector('.detail-title').textContent = project.title;
-  pageDetail.querySelector('.detail-desc').textContent  = project.description;
-  pageDetail.querySelector('.detail-year').textContent  = `( _©${project.year} )`;
 
-  /* deliverables list */
-  const delList = pageDetail.querySelector('.detail-deliverables');
-  delList.innerHTML = project.deliverables
-    .map((d) => `<li class="detail-meta__item">${d}</li>`)
-    .join('');
+  /* description (right panel) */
+  pageDetail.querySelector('.detail-desc').textContent = project.description;
 
-  /* tools list */
-  const toolList = pageDetail.querySelector('.detail-tools');
-  toolList.innerHTML = project.tools
-    .map((t) => `<li class="detail-meta__item">${t}</li>`)
-    .join('');
+  /* stripe meta rows */
+  const meta = document.getElementById('detailMeta');
+  meta.innerHTML = [
+    { label: 'Deliverables', value: project.deliverables.join(', ') },
+    { label: 'Tools',        value: project.tools.join(', ')        },
+  ].map(({ label, value }) => `
+    <div class="detail-meta__row">
+      <span class="detail-meta__label">${label}</span>
+      <span class="detail-meta__value">${value}</span>
+    </div>
+  `).join('');
 
   /* right image stack */
   const imgStack = pageDetail.querySelector('.detail-right');
-  imgStack.innerHTML = project.images
-    .map(({ src, alt }) => `<div class="detail-img"><img src="${src}" alt="${alt}" loading="lazy"></div>`)
-    .join('');
+  imgStack.querySelectorAll('.detail-img').forEach((n) => n.remove());
+  project.images.forEach(({ src, alt }) => {
+    const div = document.createElement('div');
+    div.className = 'detail-img';
+    div.innerHTML = `<img src="${src}" alt="${alt}" loading="lazy">`;
+    imgStack.appendChild(div);
+  });
+
+  /* more projects strip */
+  const others = allProjects.filter((p) => p.id !== project.id);
+  buildMoreStrip(others, project);
 
   pageMain.style.display = 'none';
   pageDetail.classList.add('is-active');
   lenis.scrollTo(0, { immediate: true });
+
+  if (pushState) history.pushState({ view: 'detail', projectId: project.id }, '');
 }
 
-/* ── Projects: load from JSON, render cards + slider ── */
+/* ── Browser back/forward ── */
+window.addEventListener('popstate', (e) => {
+  if (!e.state || e.state.view === 'main') {
+    showMain(false);
+  } else if (e.state.view === 'detail') {
+    const project = allProjects.find((p) => p.id === e.state.projectId);
+    if (project) showDetail(project, false);
+  }
+});
+
+/* ── Projects: load from JSON ── */
 async function initProjects() {
   const res  = await fetch('data/projects.json');
   const { slider, projects } = await res.json();
+  allProjects = projects;
 
-  /* slider — duplicate for seamless loop */
+  history.replaceState({ view: 'main' }, '');
+
+  /* slider */
   const track = document.getElementById('sliderTrack');
   track.innerHTML = [...slider, ...slider]
     .map(({ img, alt }) => `<div class="slide-item"><img src="${img}" alt="${alt}" draggable="false"></div>`)
@@ -88,16 +183,12 @@ async function initProjects() {
   const grid = document.getElementById('projectsGrid');
   grid.innerHTML = projects.map(renderCard).join('');
 
-  /* card click → detail view */
   grid.addEventListener('click', (e) => {
     const card = e.target.closest('[data-project-id]');
     if (!card) return;
     const project = projects.find((p) => p.id === card.dataset.projectId);
     if (project) showDetail(project);
   });
-
-  /* back button */
-  document.getElementById('detailBack').addEventListener('click', showMain);
 }
 
 function renderCard({ id, title, tag, software, img, alt }) {
