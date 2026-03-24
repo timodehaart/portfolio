@@ -235,9 +235,15 @@ async function initProjects() {
 
   /* slider */
   const track = document.getElementById('sliderTrack');
-  track.innerHTML = [...slider, ...slider]
+  track.innerHTML = slider
     .map(({ img, alt }) => `<div class="slide-item"><img src="${img}" alt="${alt}" draggable="false"></div>`)
     .join('');
+
+  const embla = EmblaCarousel(
+    document.getElementById('sliderEmbla'),
+    { loop: true, dragFree: true, align: 'start', watchDrag: false },
+    [EmblaCarouselAutoScroll({ speed: 1.4, stopOnInteraction: false, stopOnMouseEnter: false })]
+  );
 
   /* project grid */
   const grid = document.getElementById('projectsGrid');
