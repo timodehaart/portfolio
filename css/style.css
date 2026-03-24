@@ -512,6 +512,39 @@ header.menu-open { background:transparent; backdrop-filter:none; z-index:2002; }
 }
 
 /* ─────────────────────────────────────
+   Detail view — video media block
+   ADD THIS TO THE BOTTOM OF style.css
+   (replaces any previous version)
+───────────────────────────────────── */
+ 
+/* !important needed to beat .detail-img:nth-child(odd/even) { aspect-ratio: 4/3.5 } */
+.detail-img--video,
+.detail-img--video:nth-child(odd),
+.detail-img--video:nth-child(even) {
+  aspect-ratio: unset !important;
+  background: none;
+  display: block;
+  border-radius: 32px;
+  overflow: hidden;
+}
+ 
+.detail-img video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 0;
+  /* only crop the top black bar — leaving the bottom alone keeps controls visible */
+  margin-top: -7%;
+}
+ 
+@media (max-width: 768px) {
+  .detail-img--video,
+  .detail-img--video:nth-child(odd),
+  .detail-img--video:nth-child(even) { border-radius: 20px; }
+}
+
+/* ─────────────────────────────────────
    About
 ───────────────────────────────────── */
 .about-section {

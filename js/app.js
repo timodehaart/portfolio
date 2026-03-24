@@ -182,13 +182,25 @@ function showDetail(project, pushState = true) {
     </div>
   `).join('');
 
-  /* right image stack */
+  /* right image/video stack */
   const imgStack = pageDetail.querySelector('.detail-right');
   imgStack.querySelectorAll('.detail-img').forEach((n) => n.remove());
-  project.images.forEach(({ src, alt }) => {
+
+  project.images.forEach(({ src, alt, type }) => {
     const div = document.createElement('div');
     div.className = 'detail-img';
-    div.innerHTML = `<img src="${src}" alt="${alt}" loading="lazy">`;
+
+    if (type === 'video') {
+      /* autoplay, muted, looping — no controls needed for a showcase reel */
+      div.classList.add('detail-img--video');
+      div.innerHTML = `
+        <video autoplay muted loop playsinline controls>
+          <source src="${src}" type="video/mp4">
+        </video>`;
+    } else {
+      div.innerHTML = `<img src="${src}" alt="${alt}" loading="lazy">`;
+    }
+
     imgStack.appendChild(div);
   });
 

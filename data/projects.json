@@ -79,7 +79,7 @@
         { "src": "img/projects/sproutup/sproutup3.png", "alt": "Shopping Page" }
     ]
     },
-        {
+    {
     "id": "blue-lock-cards",
     "title": "Blue Lock Cards",
     "tag": "Web Design / Development",
@@ -95,6 +95,40 @@
         { "src": "img/projects/bluelock/bluelock3.png", "alt": "Iteration" },
         { "src": "img/projects/bluelock/bluelock1.png", "alt": "Final Version" }
     ]
+    },
+    {
+      "id": "buurtschap-te-veld",
+      "title": "Buurtschap Te Veld",
+      "tag": "UX / Concept Design",
+      "software": "_Figma",
+      "img": "img/projects/buurtschapteveld/buurtschapteveld3.png",
+      "alt": "Buurtschap Te Veld",
+      "description": "Buurtschap Te Veld is a concept project aimed at bringing the residents of the Te Veld neighbourhood in Eindhoven closer together. The challenge was to lower the barrier for people to connect with their neighbours and discover what's happening around them.\n\nOur solution combined two touchpoints: a large interactive display board installed in the neighbourhood itself, and a companion mobile app. On the board, passersby could browse upcoming local events in an engaging, visual way. Through the app, residents could submit their own events, interact with the community board, and sign up for activities nearby.\n\nThis project pushed me to think beyond the screen — designing an experience that bridges the physical and digital worlds for a diverse, community-based audience where simplicity and accessibility are everything.",
+      "deliverables": [
+        "Concept Design",
+        "UI/UX Design",
+        "Interactive Prototype",
+        "Physical Board Design"
+      ],
+      "tools": [
+        "Figma"
+      ],
+      "year": "2025",
+      "images": [
+        {
+          "src": "img/projects/buurtschapteveld/buurtschapteveld.mp4",
+          "alt": "Concept Overview",
+          "type": "video"
+        },
+        {
+          "src": "img/projects/buurtschapteveld/buurtschapteveld2.png",
+          "alt": "Splash Screen"
+        },
+        {
+          "src": "img/projects/buurtschapteveld/buurtschapteveld3.png",
+          "alt": "Mobile App"
+        }
+      ]
     }
   ]
 }
