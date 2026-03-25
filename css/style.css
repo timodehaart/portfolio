@@ -599,6 +599,7 @@ header.menu-open { background:transparent; backdrop-filter:none; z-index:2002; }
   flex:1; background:var(--grey);
   display:flex; flex-direction:column; justify-content:space-between;
   padding:3.5rem 4rem; position:relative; overflow:hidden;
+  gap: 1.5rem;
 }
 .about-info::before {
   content:''; position:absolute; top:-140px; right:-140px;
@@ -696,7 +697,7 @@ header.menu-open { background:transparent; backdrop-filter:none; z-index:2002; }
 
 @media (max-width:1024px) {
   .about-section { padding:6rem 60px 4rem; }
-  .about-card { height:auto; min-height:70vh; }
+  .about-card { display:flex; width:100%; min-height:90vh; height:auto; border-radius:40px; overflow:hidden; }
   .about-info { padding:3rem 2.5rem; }
 }
 @media (max-width:768px) {
