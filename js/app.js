@@ -36,12 +36,27 @@ toggle.addEventListener('click', () => {
 overlay.querySelectorAll('.nav-list a').forEach((link) => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
+
     overlay.classList.remove('is-open');
     toggle.classList.remove('is-open');
     toggle.setAttribute('aria-expanded', false);
     header.classList.remove('menu-open');
-    if (target) lenis.scrollTo(target, { duration: 1.4 });
+
+    const href = link.getAttribute('href');
+
+    /* If detail view is active, return to main first, then scroll */
+    if (pageDetail.classList.contains('is-active')) {
+      showMain(false);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const target = document.querySelector(href);
+          if (target) lenis.scrollTo(target, { duration: 1.4 });
+        });
+      });
+    } else {
+      const target = document.querySelector(href);
+      if (target) lenis.scrollTo(target, { duration: 1.4 });
+    }
   });
 });
 
@@ -54,7 +69,7 @@ const resumePreviewBtn = document.getElementById('resumePreviewBtn');
 const resumeCloseBtn   = document.getElementById('resumeCloseBtn');
 const resumeBackdrop   = document.getElementById('resumeBackdrop');
 
-const RESUME_PDF = './img/resume/resume.pdf';
+const RESUME_PDF     = './img/resume/resume.pdf';
 const RESUME_PREVIEW = './img/resume/resume.png';
 
 function openResumeModal() {
@@ -88,8 +103,8 @@ const pageDetail = document.getElementById('pageDetail');
 let allProjects = [];
 
 /* ── More-projects strip slider ── */
-let stripOffset  = 0;   // current card index offset
-let stripVisible = 3;   // how many cards are visible (recalculated on resize)
+let stripOffset  = 0;
+let stripVisible = 3;
 let stripTotal   = 0;
 
 function getStripVisible() {
@@ -119,15 +134,14 @@ function setStripOffset(offset, others) {
   updateStripArrows(others);
 }
 
-function buildMoreStrip(others, currentProject) {
+function buildMoreStrip(others) {
   const strip = document.getElementById('moreProjectsStrip');
   strip.innerHTML = others.map(renderCard).join('');
   strip.style.transform = 'translateX(0)';
-  stripOffset = 0;
-  stripTotal  = others.length;
+  stripOffset  = 0;
+  stripTotal   = others.length;
   stripVisible = getStripVisible();
 
-  /* wire card clicks */
   strip.querySelectorAll('[data-project-id]').forEach((card) => {
     card.addEventListener('click', () => {
       const p = allProjects.find((x) => x.id === card.dataset.projectId);
@@ -135,11 +149,9 @@ function buildMoreStrip(others, currentProject) {
     });
   });
 
-  /* arrow buttons */
   const prev = document.getElementById('morePrev');
   const next = document.getElementById('moreNext');
 
-  // remove old listeners by cloning
   const newPrev = prev.cloneNode(true);
   const newNext = next.cloneNode(true);
   prev.parentNode.replaceChild(newPrev, prev);
@@ -155,19 +167,36 @@ function buildMoreStrip(others, currentProject) {
   updateStripArrows(others);
 }
 
-/* ── Show/hide pages ── */
+/* ── Show main page ── */
 function showMain(pushState = true) {
   pageDetail.classList.remove('is-active');
   pageMain.style.display = '';
-  lenis.scrollTo(0, { immediate: true });
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const projectsSection = document.getElementById('projects');
+      if (projectsSection) lenis.scrollTo(projectsSection, { immediate: true });
+    });
+  });
+
   if (pushState) history.pushState({ view: 'main' }, '');
 }
 
+/* ── Show detail page ── */
 function showDetail(project, pushState = true) {
+  /*
+   * Capture whether we are ALREADY on a detail page BEFORE
+   * any DOM changes — this is the fix for the broken back button.
+   * Previously this check ran after classList.add('is-active'),
+   * so it was always true and always used replaceState, meaning
+   * there was never a history entry to go back to.
+   */
+  const alreadyInDetail = pageDetail.classList.contains('is-active');
+
   /* title */
   pageDetail.querySelector('.detail-title').textContent = project.title;
 
-  /* description (right panel) */
+  /* description */
   pageDetail.querySelector('.detail-desc').textContent = project.description;
 
   /* stripe meta rows */
@@ -191,7 +220,6 @@ function showDetail(project, pushState = true) {
     div.className = 'detail-img';
 
     if (type === 'video') {
-      /* autoplay, muted, looping — no controls needed for a showcase reel */
       div.classList.add('detail-img--video');
       div.innerHTML = `
         <video autoplay muted loop playsinline controls>
@@ -206,24 +234,29 @@ function showDetail(project, pushState = true) {
 
   /* more projects strip */
   const others = allProjects.filter((p) => p.id !== project.id);
-  buildMoreStrip(others, project);
+  buildMoreStrip(others);
 
   pageMain.style.display = 'none';
   pageDetail.classList.add('is-active');
   lenis.scrollTo(0, { immediate: true });
 
   if (pushState) {
-    // If already viewing a detail, replace so back always returns to main
-    const alreadyInDetail = pageDetail.classList.contains('is-active');
     if (alreadyInDetail) {
+      /*
+       * Already on a detail page (clicked a "more projects" card).
+       * Replace so back skips other projects and goes straight to main.
+       */
       history.replaceState({ view: 'detail', projectId: project.id }, '');
     } else {
+      /*
+       * Coming from the main page — push so back returns to main.
+       */
       history.pushState({ view: 'detail', projectId: project.id }, '');
     }
   }
 }
 
-/* ── Browser back/forward ── */
+/* ── Browser back / forward ── */
 window.addEventListener('popstate', (e) => {
   if (!e.state || e.state.view === 'main') {
     showMain(false);
@@ -239,6 +272,7 @@ async function initProjects() {
   const { slider, projects } = await res.json();
   allProjects = projects;
 
+  /* Seed history with the main state at the bottom of the stack */
   history.replaceState({ view: 'main' }, '');
 
   /* slider */

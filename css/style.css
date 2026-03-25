@@ -353,6 +353,7 @@ header.menu-open { background:transparent; backdrop-filter:none; z-index:2002; }
   .projects-section { padding:5rem 40px 3rem; }
   .projects-grid { grid-template-columns:1fr; gap:32px; }
   .project-card { height:72vw; min-height:260px; max-height:480px; border-radius:24px; }
+  .project-card__title { display: none; }
 }
 @media (max-width:480px) {
   .projects-section { padding:4rem 24px 2.5rem; }
