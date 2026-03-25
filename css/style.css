@@ -574,10 +574,11 @@ header.menu-open { background:transparent; backdrop-filter:none; z-index:2002; }
   font-weight:400; color:var(--ink); line-height:1.05; letter-spacing:-.02em;
 }
 .about-card {
-  display:flex; width:100%; height:90vh; border-radius:40px; overflow:hidden;
+  display:flex; width:100%; min-height:90vh; height:auto; border-radius:40px; overflow:clip;
 }
 .about-photo {
   flex:0 0 50%; position:relative; background:var(--pink); overflow:hidden;
+  min-height:90vh;
 }
 .about-photo::before {
   content:''; position:absolute; inset:0;
@@ -598,7 +599,7 @@ header.menu-open { background:transparent; backdrop-filter:none; z-index:2002; }
 .about-info {
   flex:1; background:var(--grey);
   display:flex; flex-direction:column; justify-content:space-between;
-  padding:3.5rem 4rem; position:relative; overflow:hidden;
+  padding:3.5rem 4rem 4rem; position:relative; overflow:visible;
   gap: 1.5rem;
 }
 .about-info::before {
