@@ -45,41 +45,6 @@
     ]
     },
     {
-    "id": "samen-aan-z",
-    "title": "Samen aan Z",
-    "tag": "UX / Web Development",
-    "software": "_Angular",
-    "img": "img/projects/samenaanz/samenaanz2.png",
-    "alt": "Samen aan Z Platform",
-    "description": "During my internship, I worked on 'Samen aan Z', a data collection platform for researchers to gather insights from hospitals to improve staff well-being and reduce burnout.\n\nIn 5 weeks, I worked on researching and redesigning the platform, and then helped build it using Angular (Module Federation) and Tailwind CSS. The project was a collaboration with Fontys Research Groups and the company Stormin, funded by the government.\n\nThrough this project, I learned a lot about working with frameworks, setting up scalable foundations, and building a system that can grow into a larger platform that not only uses surveys, but also other data sources in the future.",
-    "deliverables": ["UX Research", "UI Redesign", "Frontend Development"],
-    "tools": ["Angular", "Tailwind CSS", "Figma"],
-    "year": "2024",
-    "images": [
-        { "src": "img/projects/samenaanz/samenaanz2.png", "alt": "Dashboard" },
-        { "src": "img/projects/samenaanz/samenaanz3.png", "alt": "Survey Flow" },
-        { "src": "img/projects/samenaanz/samenaanz4.png", "alt": "Walkthrough" },
-        { "src": "img/projects/samenaanz/samenaanz1.png", "alt": "Angular Module Federation" }
-    ]
-    },
-    {
-    "id": "sprout-up",
-    "title": "Sprout Up",
-    "tag": "App Design / Development",
-    "software": "_Flutter",
-    "img": "img/projects/sproutup/sproutup2.png",
-    "alt": "Sprout Up App",
-    "description": "Sprout Up is an app concept focused on promoting plant growth in a fun and engaging way. Users can collect trees in the app and earn in-game money, which they can use to unlock and grow more trees.\n\nThe idea behind the app is that when a user buys a tree, a real tree is planted in that country. This creates a sense of impact, where users are not only collecting digitally but also contributing to real-world environmental growth.\n\nThrough this project, I worked on designing the app in Figma and building it using Flutter. It helped me understand how to turn a concept into an interactive app while focusing on both user engagement and meaningful impact.",
-    "deliverables": ["App Concept", "UI/UX Design", "Mobile Development"],
-    "tools": ["Figma", "Flutter"],
-    "year": "2024",
-    "images": [
-        { "src": "img/projects/sproutup/sproutup1.png", "alt": "Splash Screen" },
-        { "src": "img/projects/sproutup/sproutup2.png", "alt": "Home Planting Trees" },
-        { "src": "img/projects/sproutup/sproutup3.png", "alt": "Shopping Page" }
-    ]
-    },
-    {
     "id": "blue-lock-cards",
     "title": "Blue Lock Cards",
     "tag": "Web Design / Development",
@@ -97,13 +62,31 @@
     ]
     },
     {
+    "id": "samen-aan-z",
+    "title": "Samen aan Z Dashboard",
+    "tag": "UX / Web Development",
+    "software": "_Angular",
+    "img": "img/projects/samenaanz/samenaanz2.png",
+    "alt": "Samen aan Z Platform",
+    "description": "During my internship, I worked on 'Samen aan Z', a data collection platform for researchers to gather insights from hospitals to improve staff well-being and reduce burnout.\n\nIn 5 weeks, I worked on researching and redesigning the platform, after those 5 weeks I spent another 12 weeks helping to build it using Angular (Module Federation) and Tailwind CSS. The project was a collaboration with Fontys Research Groups and the company Stormin, funded by the government.\n\nThrough this project, I learned a lot about working with frameworks, setting up scalable foundations, and building a system that can grow into a larger platform that not only uses surveys, but also other data sources in the future.",
+    "deliverables": ["UX Research", "UI Redesign", "Frontend Development"],
+    "tools": ["Angular", "Tailwind CSS", "Figma"],
+    "year": "2024",
+    "images": [
+        { "src": "img/projects/samenaanz/samenaanz2.png", "alt": "Dashboard" },
+        { "src": "img/projects/samenaanz/samenaanz3.png", "alt": "Survey Flow" },
+        { "src": "img/projects/samenaanz/samenaanz4.png", "alt": "Walkthrough" },
+        { "src": "img/projects/samenaanz/samenaanz1.png", "alt": "Angular Module Federation" }
+    ]
+    },
+    {
       "id": "buurtschap-te-veld",
       "title": "Buurtschap Te Veld",
       "tag": "UX / Concept Design",
-      "software": "_Figma",
+      "software": "_Concept Design",
       "img": "img/projects/buurtschapteveld/buurtschapteveld3.png",
       "alt": "Buurtschap Te Veld",
-      "description": "Buurtschap Te Veld is a concept project aimed at bringing the residents of the Te Veld neighbourhood in Eindhoven closer together. The challenge was to lower the barrier for people to connect with their neighbours and discover what's happening around them.\n\nOur solution combined two touchpoints: a large interactive display board installed in the neighbourhood itself, and a companion mobile app. On the board, passersby could browse upcoming local events in an engaging, visual way. Through the app, residents could submit their own events, interact with the community board, and sign up for activities nearby.\n\nThis project pushed me to think beyond the screen — designing an experience that bridges the physical and digital worlds for a diverse, community-based audience where simplicity and accessibility are everything.",
+      "description": "Buurtschap Te Veld is a concept project aimed at bringing the residents of the Te Veld neighbourhood in Eindhoven closer together. The challenge was to lower the barrier for people to connect with their neighbours and discover what's happening around them.\n\nOur solution combined two touchpoints: a large interactive display board installed in the neighbourhood itself, and a companion mobile app. On the board, passersby could browse upcoming local events in an engaging, visual way. Through the app, residents could submit their own events, interact with the community board, and sign up for activities nearby.\n\nThis project helped me understand how to really go through a design thinking process and create a seamless experience across physical and digital touchpoints. It was a great opportunity to explore how design can create real-world connections and make a positive impact on a local community.",
       "deliverables": [
         "Concept Design",
         "UI/UX Design",
@@ -129,6 +112,23 @@
           "alt": "Mobile App"
         }
       ]
+    },
+    {
+    "id": "sprout-up",
+    "title": "Sprout Up",
+    "tag": "App Design / Development",
+    "software": "_Flutter",
+    "img": "img/projects/sproutup/sproutup2.png",
+    "alt": "Sprout Up App",
+    "description": "Sprout Up is an app concept focused on promoting plant growth in a fun and engaging way. Users can collect trees in the app and earn in-game money, which they can use to unlock and grow more trees.\n\nThe idea behind the app is that when a user buys a tree, a real tree is planted in that country. This creates a sense of impact, where users are not only collecting digitally but also contributing to real-world environmental growth.\n\nThrough this project, I worked on designing the app in Figma and building it using Flutter. It helped me understand how to turn a concept into an interactive app while focusing on both user engagement and meaningful impact.",
+    "deliverables": ["App Concept", "UI/UX Design", "Mobile Development"],
+    "tools": ["Figma", "Flutter"],
+    "year": "2024",
+    "images": [
+        { "src": "img/projects/sproutup/sproutup1.png", "alt": "Splash Screen" },
+        { "src": "img/projects/sproutup/sproutup2.png", "alt": "Home Planting Trees" },
+        { "src": "img/projects/sproutup/sproutup3.png", "alt": "Shopping Page" }
+    ]
     }
   ]
 }

@@ -212,7 +212,15 @@ function showDetail(project, pushState = true) {
   pageDetail.classList.add('is-active');
   lenis.scrollTo(0, { immediate: true });
 
-  if (pushState) history.pushState({ view: 'detail', projectId: project.id }, '');
+  if (pushState) {
+    // If already viewing a detail, replace so back always returns to main
+    const alreadyInDetail = pageDetail.classList.contains('is-active');
+    if (alreadyInDetail) {
+      history.replaceState({ view: 'detail', projectId: project.id }, '');
+    } else {
+      history.pushState({ view: 'detail', projectId: project.id }, '');
+    }
+  }
 }
 
 /* ── Browser back/forward ── */
